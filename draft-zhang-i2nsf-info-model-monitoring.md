@@ -64,7 +64,7 @@ monitoring part of it and proposes the information model for it.
 
 # Introduction
 
-According to {{i2nsf-framework}}, the interface
+According to {{-i2nsf-framework}}, the interface
 provided by a NSF (e.g., FW, IPS, Anti-DDOS, or Anti-Virus) to
 administrative entities (e.g., NMS, security controller) for configuring
 security function in the NSF and monitoring the NSF is referred to as a
@@ -81,7 +81,7 @@ that provide visibility into NSFs. This document will not go into the
 design details of NSF-facing interface. Instead, this draft is focused
 on specifying the information that a NSF needs to provide in the
 monitoring part of the NSF-facing interface, as well as its information
-model. Besides, {{i2nsf-capabilities}} specifies the
+model. Besides, {{-i2nsf-capabilities}} specifies the
 information model for the security policy provisioning part of the
 NSF-facing interface.
 
@@ -97,7 +97,7 @@ document are to be interpreted as described in [RFC2119].
 
 ## Definition of Terms
 
-This document uses the terms defined in {{i2nsf-terminology}}.
+This document uses the terms defined in {{-i2nsf-terminology}}.
 
 
 
