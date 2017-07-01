@@ -1,0 +1,1277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>An Information Model for the Monitoring of Network Security Functions (NSF)</title>
+
+  
+<style type="text/css">/*<![CDATA[*/
+@viewport {
+  zoom: 1.0;
+  width: extend-to-zoom;
+}
+@-ms-viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+
+@media screen and (min-width: 1024px) {
+  ul.toc, #rfc\.toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 500px);
+    width: 300px;
+    padding: 0 1em;
+    z-index: 1;
+  }
+  #rfc\.toc {
+    top: 16px;
+  }
+  ul.toc {
+    top: 80px;
+    overflow: auto;
+  }
+
+  body {
+    padding-left: 1.5em;
+    padding-right: 29em;
+  }
+}
+
+body {
+  font: 15px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #333;
+  font-size-adjust: 0.5;
+  line-height: 130%;
+  margin: 2.5em auto;
+  max-width: 724px;
+}
+
+.title, .filename, h1, h2, h3, h4 {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size-adjust: 0.5;
+  font-weight: 500;
+  color: #333;
+  line-height: 100%;
+  margin: 0.8em 0 0.3em;
+}
+.title { font-size: 36px; }
+h1 { font-size: 30px; }
+h2 { font-size: 24px; }
+h3, h4 { font-size: 18px; }
+h1 a[href], h2 a[href], h3 a[href], h4 a[href] {
+  color: #333;
+}
+
+ul.toc li {
+  list-style: none;
+  text-indent: -2.5em;
+  padding-left: 2.5em;
+  padding-bottom: 5px;
+  margin: 0;
+}
+ul.toc ul {
+  margin: 0;
+}
+/* xml2rfc nests ul directly inside ul which messes with the style badly */
+ul.toc, ul.toc>ul, ul.toc ul>ul {
+  margin: 0 0 0 1.5em;
+}
+
+table {
+  margin-left: 0em;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+td {
+  border-top: 1px solid #ddd;
+  vertical-align: top;
+}
+tr:nth-child(2n+1) > td,
+tr:nth-child(2n+1) > th {
+  background-color: #f9f9f9;
+}
+td.reference {
+  max-width: 200px;
+  border-top: none;
+  padding-right: 1em;
+}
+.right {
+  text-align: right;
+}
+
+
+table.header {
+  width: 100%;
+}
+table.header td {
+  border: none;
+  background-color: transparent;
+  color: black;
+}
+.filename {
+  color: rgb(119, 119, 119);
+  font-size: 23px;
+  font-weight: normal;
+  height: auto;
+  line-height: 100%;
+}
+#rfc\.abstract+p {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 130%;
+}
+
+samp, tt, code, pre {
+  font: 11pt consolas, monospace;
+  font-size-adjust: none;
+}
+pre {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  overflow-x: auto;
+  padding: 5px;
+  margin: 5px;
+}
+.figure {
+  font-style: italic;
+  margin: 0 1.5em;
+}
+
+address {
+  margin: 10px 0 0;
+}
+.vcard {
+  font-style: normal;
+}
+.vcardline {
+  display: block;
+}
+.vcardline .fn {
+  font-weight: bold;
+}
+.vcardline .hidden {
+  display: none;
+}
+
+dl {
+  margin-left: 1em;
+}
+dl.dl-horizontal: {
+  margin-left: 0;
+}
+dl > dt {
+  float: left;
+  margin-right: 1em;
+}
+dl.nohang > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .5em;
+}
+dl.compact > dd {
+  margin-bottom: 0em;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+}
+ul.empty {
+  list-style-type: none;
+}
+ul.empty li {
+  margin-top: .5em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+a {
+  text-decoration: none;
+}
+a[href] {
+  color: #2a6496;
+}
+a[href]:hover {
+  background-color: #eee;
+}
+
+ol, ul, li, p {
+  padding: 0;
+  margin: 0.5em 0 0.5em 2em;
+}
+li, p {
+  margin-left: 0;
+}
+address {
+  font-style: normal;
+}
+
+.github-fork-ribbon-wrapper {
+  display: none;
+}
+@media screen and (min-width: 800px) {
+  /* "Fork me on GitHub" CSS ribbon based on
+   * https://github.com/simonwhitaker/github-fork-ribbon-css
+   */
+  .github-fork-ribbon {
+    position: absolute;
+    padding: 2px 0;
+    background-color: #a00;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    pointer-events: auto;
+
+    top: 38px;
+    right: -45px;
+
+    transform: rotate(45deg);
+  }
+
+  .github-fork-ribbon a[href],
+  .github-fork-ribbon a[href]:hover {
+    color: #fff;
+    background-color: transparent;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+
+    width: 190px;
+    line-height: 18px;
+
+    display: inline-block;
+    padding: 2px 0;
+
+    border: 1.5px dotted #fff;
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .github-fork-ribbon-wrapper {
+    display: block;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    overflow: hidden;
+    top: 0; right: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .github-fork-ribbon-wrapper {
+    position: fixed;
+  }
+  /*]]>*/</style>
+
+
+  <link href="#rfc.toc" rel="Contents">
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
+<link href="#rfc.section.2" rel="Chapter" title="2 Terminology">
+<link href="#rfc.section.2.1" rel="Chapter" title="2.1 Key Words">
+<link href="#rfc.section.2.2" rel="Chapter" title="2.2 Definition of Terms">
+<link href="#rfc.section.3" rel="Chapter" title="3 Use cases for NSF Monitoring Data">
+<link href="#rfc.section.4" rel="Chapter" title="4 Classification of NSF Monitoring Data">
+<link href="#rfc.section.5" rel="Chapter" title="5 Exporting NSF Monitoring Data">
+<link href="#rfc.section.6" rel="Chapter" title="6 Basic Information Model for All Monitoring Data">
+<link href="#rfc.section.7" rel="Chapter" title="7 Extended Information Model for Monitoring Data">
+<link href="#rfc.section.7.1" rel="Chapter" title="7.1 System Alarm">
+<link href="#rfc.section.7.1.1" rel="Chapter" title="7.1.1 Memory Alarm">
+<link href="#rfc.section.7.1.2" rel="Chapter" title="7.1.2 CPU Alarm">
+<link href="#rfc.section.7.1.3" rel="Chapter" title="7.1.3 Disk Alarm">
+<link href="#rfc.section.7.1.4" rel="Chapter" title="7.1.4 Hardware Alarm">
+<link href="#rfc.section.7.1.5" rel="Chapter" title="7.1.5 Interface Alarm">
+<link href="#rfc.section.7.2" rel="Chapter" title="7.2 System Events">
+<link href="#rfc.section.7.2.1" rel="Chapter" title="7.2.1 Access Violation">
+<link href="#rfc.section.7.2.2" rel="Chapter" title="7.2.2 Configuration Change">
+<link href="#rfc.section.7.3" rel="Chapter" title="7.3 System Log">
+<link href="#rfc.section.7.3.1" rel="Chapter" title="7.3.1 Access Logs">
+<link href="#rfc.section.7.3.2" rel="Chapter" title="7.3.2 Resource Utilization Logs">
+<link href="#rfc.section.7.3.3" rel="Chapter" title="7.3.3 User Activity Logs">
+<link href="#rfc.section.7.4" rel="Chapter" title="7.4 System Counters">
+<link href="#rfc.section.7.4.1" rel="Chapter" title="7.4.1 Interface counters">
+<link href="#rfc.section.7.5" rel="Chapter" title="7.5 NSF Events">
+<link href="#rfc.section.7.5.1" rel="Chapter" title="7.5.1 DDoS Event">
+<link href="#rfc.section.7.5.2" rel="Chapter" title="7.5.2 Session Table Event">
+<link href="#rfc.section.7.5.3" rel="Chapter" title="7.5.3 Virus Event">
+<link href="#rfc.section.7.5.4" rel="Chapter" title="7.5.4 Intrusion Event">
+<link href="#rfc.section.7.5.5" rel="Chapter" title="7.5.5 Botnet Event">
+<link href="#rfc.section.7.5.6" rel="Chapter" title="7.5.6 Web Attack Event">
+<link href="#rfc.section.7.6" rel="Chapter" title="7.6 NSF Logs">
+<link href="#rfc.section.7.6.1" rel="Chapter" title="7.6.1 DDoS Logs">
+<link href="#rfc.section.7.6.2" rel="Chapter" title="7.6.2 Virus Logs">
+<link href="#rfc.section.7.6.3" rel="Chapter" title="7.6.3 Intrusion Logs">
+<link href="#rfc.section.7.6.4" rel="Chapter" title="7.6.4 Botnet Logs">
+<link href="#rfc.section.7.6.5" rel="Chapter" title="7.6.5 DPI Logs">
+<link href="#rfc.section.7.6.6" rel="Chapter" title="7.6.6 Vulnerabillity Scanning Logs">
+<link href="#rfc.section.7.6.7" rel="Chapter" title="7.6.7 Web Attack Logs">
+<link href="#rfc.section.7.7" rel="Chapter" title="7.7 NSF Counters">
+<link href="#rfc.section.7.7.1" rel="Chapter" title="7.7.1 Firewall counters">
+<link href="#rfc.section.7.7.2" rel="Chapter" title="7.7.2 Policy Hit Counters">
+<link href="#rfc.section.8" rel="Chapter" title="8 IANA Considerations">
+<link href="#rfc.section.9" rel="Chapter" title="9 Security Considerations">
+<link href="#rfc.references" rel="Chapter" title="10 References">
+<link href="#rfc.references.1" rel="Chapter" title="10.1 Normative References">
+<link href="#rfc.references.2" rel="Chapter" title="10.2 Informative References">
+<link href="#rfc.acknowledgements" rel="Chapter">
+<link href="#rfc.authors" rel="Chapter">
+
+
+  <meta name="generator" content="xml2rfc version 2.6.2 - http://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Xia, L., Zhang, D., Wu, Y., Kumar, R., Lohiya, A., and H. Birkholz" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-zhang-i2nsf-info-model-monitoring-latest" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-3-13" />
+  <meta name="dct.abstract" content="The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSFs to enforce the security policy provisioning and network security status monitoring . This document focuses on the monitoring part of it and proposes the information model for it." />
+  <meta name="description" content="The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSFs to enforce the security policy provisioning and network security status monitoring . This document focuses on the monitoring part of it and proposes the information model for it." />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+<td class="left">Network Working Group</td>
+<td class="right">L. Xia</td>
+</tr>
+<tr>
+<td class="left">Internet-Draft</td>
+<td class="right">D. Zhang</td>
+</tr>
+<tr>
+<td class="left">Intended status: Experimental</td>
+<td class="right">Huawei</td>
+</tr>
+<tr>
+<td class="left">Expires: September 14, 2017</td>
+<td class="right">Y. Wu</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">Aliababa Group</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">R. Kumar</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">A. Lohiya</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">Juniper Networks</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">H. Birkholz</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">Fraunhofer SIT</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">March 13, 2017</td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">An Information Model for the Monitoring of Network Security Functions (NSF)<br />
+  <span class="filename">draft-zhang-i2nsf-info-model-monitoring-latest</span></p>
+  
+  <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
+<p>The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSFs to enforce the security policy provisioning and network security status monitoring . This document focuses on the monitoring part of it and proposes the information model for it.</p>
+<h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on September 14, 2017.</p>
+<h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
+<p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a>
+</li>
+<li>2.   <a href="#rfc.section.2">Terminology</a>
+</li>
+<ul><li>2.1.   <a href="#rfc.section.2.1">Key Words</a>
+</li>
+<li>2.2.   <a href="#rfc.section.2.2">Definition of Terms</a>
+</li>
+</ul><li>3.   <a href="#rfc.section.3">Use cases for NSF Monitoring Data</a>
+</li>
+<li>4.   <a href="#rfc.section.4">Classification of NSF Monitoring Data</a>
+</li>
+<li>5.   <a href="#rfc.section.5">Exporting NSF Monitoring Data</a>
+</li>
+<li>6.   <a href="#rfc.section.6">Basic Information Model for All Monitoring Data</a>
+</li>
+<li>7.   <a href="#rfc.section.7">Extended Information Model for Monitoring Data</a>
+</li>
+<ul><li>7.1.   <a href="#rfc.section.7.1">System Alarm</a>
+</li>
+<ul><li>7.1.1.   <a href="#rfc.section.7.1.1">Memory Alarm</a>
+</li>
+<li>7.1.2.   <a href="#rfc.section.7.1.2">CPU Alarm</a>
+</li>
+<li>7.1.3.   <a href="#rfc.section.7.1.3">Disk Alarm</a>
+</li>
+<li>7.1.4.   <a href="#rfc.section.7.1.4">Hardware Alarm</a>
+</li>
+<li>7.1.5.   <a href="#rfc.section.7.1.5">Interface Alarm</a>
+</li>
+</ul><li>7.2.   <a href="#rfc.section.7.2">System Events</a>
+</li>
+<ul><li>7.2.1.   <a href="#rfc.section.7.2.1">Access Violation</a>
+</li>
+<li>7.2.2.   <a href="#rfc.section.7.2.2">Configuration Change</a>
+</li>
+</ul><li>7.3.   <a href="#rfc.section.7.3">System Log</a>
+</li>
+<ul><li>7.3.1.   <a href="#rfc.section.7.3.1">Access Logs</a>
+</li>
+<li>7.3.2.   <a href="#rfc.section.7.3.2">Resource Utilization Logs</a>
+</li>
+<li>7.3.3.   <a href="#rfc.section.7.3.3">User Activity Logs</a>
+</li>
+</ul><li>7.4.   <a href="#rfc.section.7.4">System Counters</a>
+</li>
+<ul><li>7.4.1.   <a href="#rfc.section.7.4.1">Interface counters</a>
+</li>
+</ul><li>7.5.   <a href="#rfc.section.7.5">NSF Events</a>
+</li>
+<ul><li>7.5.1.   <a href="#rfc.section.7.5.1">DDoS Event</a>
+</li>
+<li>7.5.2.   <a href="#rfc.section.7.5.2">Session Table Event</a>
+</li>
+<li>7.5.3.   <a href="#rfc.section.7.5.3">Virus Event</a>
+</li>
+<li>7.5.4.   <a href="#rfc.section.7.5.4">Intrusion Event</a>
+</li>
+<li>7.5.5.   <a href="#rfc.section.7.5.5">Botnet Event</a>
+</li>
+<li>7.5.6.   <a href="#rfc.section.7.5.6">Web Attack Event</a>
+</li>
+</ul><li>7.6.   <a href="#rfc.section.7.6">NSF Logs</a>
+</li>
+<ul><li>7.6.1.   <a href="#rfc.section.7.6.1">DDoS Logs</a>
+</li>
+<li>7.6.2.   <a href="#rfc.section.7.6.2">Virus Logs</a>
+</li>
+<li>7.6.3.   <a href="#rfc.section.7.6.3">Intrusion Logs</a>
+</li>
+<li>7.6.4.   <a href="#rfc.section.7.6.4">Botnet Logs</a>
+</li>
+<li>7.6.5.   <a href="#rfc.section.7.6.5">DPI Logs</a>
+</li>
+<li>7.6.6.   <a href="#rfc.section.7.6.6">Vulnerabillity Scanning Logs</a>
+</li>
+<li>7.6.7.   <a href="#rfc.section.7.6.7">Web Attack Logs</a>
+</li>
+</ul><li>7.7.   <a href="#rfc.section.7.7">NSF Counters</a>
+</li>
+<ul><li>7.7.1.   <a href="#rfc.section.7.7.1">Firewall counters</a>
+</li>
+<li>7.7.2.   <a href="#rfc.section.7.7.2">Policy Hit Counters</a>
+</li>
+</ul></ul><li>8.   <a href="#rfc.section.8">IANA Considerations</a>
+</li>
+<li>9.   <a href="#rfc.section.9">Security Considerations</a>
+</li>
+<li>10.   <a href="#rfc.references">References</a>
+</li>
+<ul><li>10.1.   <a href="#rfc.references.1">Normative References</a>
+</li>
+<li>10.2.   <a href="#rfc.references.2">Informative References</a>
+</li>
+</ul><li><a href="#rfc.acknowledgements">Acknowledgements</a>
+</li>
+<li><a href="#rfc.authors">Authors' Addresses</a>
+</li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1">
+<a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
+</h1>
+<p id="rfc.section.1.p.1">According to <a href="#I-D.ietf-i2nsf-framework" class="xref">[I-D.ietf-i2nsf-framework]</a>, the interface provided by a NSF (e.g., FW, IPS, Anti-DDOS, or Anti-Virus) to administrative entities (e.g., NMS, security controller) for configuring security function in the NSF and monitoring the NSF is referred to as a &#8216;I2NSF customer-facing interface&#8217;. The monitoring part of it is meant to monitor the NSF e.g. events, alerts, alarms, logs, counters. The monitoring of the NSF plays a very important role in the overall security framework if done in a timely and comprehensive way. The monitoring information generated by a NSF could very well be an early indication of malicious activity, or anomalous behavior, or a potential sign of denial of service attacks.</p>
+<p id="rfc.section.1.p.2">This draft proposes a comprehensive NSF monitoring information model that provide visibility into NSFs. This document will not go into the design details of NSF-facing interface. Instead, this draft is focused on specifying the information that a NSF needs to provide in the monitoring part of the NSF-facing interface, as well as its information model. Besides, <a href="#I-D.xibassnez-i2nsf-capability" class="xref">[I-D.xibassnez-i2nsf-capability]</a> specifies the information model for the security policy provisioning part of the NSF-facing interface.</p>
+<h1 id="rfc.section.2">
+<a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a>
+</h1>
+<h1 id="rfc.section.2.1">
+<a href="#rfc.section.2.1">2.1.</a> <a href="#key-words" id="key-words">Key Words</a>
+</h1>
+<p id="rfc.section.2.1.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in <a href="#RFC2119" class="xref">[RFC2119]</a>.</p>
+<h1 id="rfc.section.2.2">
+<a href="#rfc.section.2.2">2.2.</a> <a href="#definition-of-terms" id="definition-of-terms">Definition of Terms</a>
+</h1>
+<p id="rfc.section.2.2.p.1">This document uses the terms defined in <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a>.</p>
+<h1 id="rfc.section.3">
+<a href="#rfc.section.3">3.</a> <a href="#use-cases-for-nsf-monitoring-data" id="use-cases-for-nsf-monitoring-data">Use cases for NSF Monitoring Data</a>
+</h1>
+<p id="rfc.section.3.p.1">As mentioned earlier, monitoring plays a very critical role in the overall security framework. The monitoring of the NSF provides very valuable information to the security controller in maintaining the provisioned security posture. Besides this, there are various other reasons to monitor the NSFs as listed below:</p>
+<p></p>
+
+<ul>
+<li>The security administrator could configure a policy that is triggered on a specific event happened in the NSF or the network.  The security controller would monitor for the specified event and once it happens, it configures additional security functions as per the policy.</li>
+<li>The events triggered by NSFs as a result of security policy violation could be used by SIEM to detect any suspicious activity.</li>
+<li>The events and activity logs from NSFs could be used to build advanced analytics such as behavior and predictive to improve the security posture.</li>
+<li>The security controller could use events from the NSF for achieving high availability. It could take corrective actions such as restarting a failed NSF, horizontally scaling the NSF etc.</li>
+<li>The events and activity logs from the NSF could aid in debugging and root cause analysis of an operational issue.</li>
+<li>The activity logs from the NSF could be used to build historical data for operational and business reasons.</li>
+</ul>
+<h1 id="rfc.section.4">
+<a href="#rfc.section.4">4.</a> <a href="#classification-of-nsf-monitoring-data" id="classification-of-nsf-monitoring-data">Classification of NSF Monitoring Data</a>
+</h1>
+<p id="rfc.section.4.p.1">In order to maintain a strong security posture, it is not only necessary to configure NSF security policies but also to continuously monitor NSF by consuming acquirable monitoring data. This enables security admins to assess what is happening in the network timely. It is not possible to block all the internal and external threats based on static security posture but requires a very dynamic posture with constant visibility. This draft defines a set of information elements (and their scope) that can be acquired from NSF and can be used as monitoring data. In essence, these types of monitoring data can be leveraged to support constant visibility on multiple levels of granularity and can be consumed by corresponding functions. The types of monitoring data as ordered below increase in expressiveness by incorporating more information to the semantics of the monitoring data.  There are two categories of monitoring data. Information that is produced and emitted by an NSF automatically (published data) and information that is produced and retained by the NSF and has to be collected in intervals (retained data):</p>
+<p id="rfc.section.4.p.2">Published Data:</p>
+<p></p>
+
+<ul>
+<li>Events: the most generic type of monitoring data that can be emitted by an NSF. An event is defined in <a href="#RFC3877" class="xref">[RFC3877]</a> as something that happens which may be of interest. A fault, a change in status, crossing a threshold, or an external input to the system, for example. In the context of the I2NSF IMM, an event is a representation of a change of state, configuration, or composition of an NSF or an entity (e.g. an endpoint) or an activity (e.g. a PDU flow) that can be observed by the NSF and can be interpreted as a change of state or behavior by the NSF. An event can be created without the use of an I2NSF Condition (declarative guidance) available to the NSF. In the context of I2NSF, in some cases an event can trigger low level I2NSF actions (which constitutes an implicit escalation to alert via primate assessment).</li>
+<li>Alert: an event that is annotated with a criticality assessment due to non-compliance with I2NSF conditions (declarative guidance) available to an I2NSF Consumer via I2NSF Actions. The Intrusion Detection Message Exchange Format <a href="#RFC4765" class="xref">[RFC4765]</a> defines a representation that systems can use to report alerts about events that they deem suspicious and also associates a severity (an estimate of the relative severity of the event) with the corresponding alert. In the context of the I2NSF IMM, an alert is derived from events that express changes indicating not to conform with declarative guidance (e.g. an exceeded threshold of a value or a pattern or signature found in a PDU stream  typically an I2NSF condition) or due to imperative guidance (e.g. correlation rules applied to streams of multiple events over time or a black-list content of an event matches  typically an I2NSF Policy Rule). An alert is created by an I2NSF Producer with respect to I2NSF conditions (declarative guidance) or imperative guidance available to the I2NSF Producer. An alert does not indicate an immediate impact on operations and are not time-sensitive (but can be escalated to an alarm nevertheless due to persistence via an I2NSF Policy Rule).</li>
+<li>Alarms: an alarm that is annotated with the assertion of: 1.) having immediate impact on operations, or 2.) a persistence that in non-compliant in respect to I2NSF conditions (declarative guidance), or 3.) a correlation result produced by a I2NSF Service in respect to the result of I2NSF Policy Rules that process alerts. Alarms are time-sensitive and must be reported to the security admin as soon as possible. By processing alarms, the administrator can rapidly locate the root-cause of faults and rapidly deal with the faults to ensure normal operation of the NSFs and avoid NSFs going into unknown state or potentially exposing security vulnerabilities. An analyst can manage the NSF with via I2NSF Policy Rules. The intend of alarms is to highlight only critical information and to avoid continuous combing through large amount alerts (or even events) by analysts.</li>
+</ul>
+<p id="rfc.section.4.p.4">Retained Data:</p>
+<p></p>
+
+<ul>
+<li>Logs: Logs are information generated by NSF about its operational and informational data, or various events such as user activities, network/traffic status and network activity, etc. Logs are important for debugging, auditing and security forensic. Unlike events, logs do not require an immediate attention from an analyst but may be useful for visibility and retroactive cyber forensic. Hence, logs usually include less structures but potentially more detailed information in regard to events. For example, the NSF could generate a log when due to an I2NSF Policy Rule. Logs can be continuously processed by I2NSF Agent that act as I2NSF Producer and emit events via function specifically tailored to a type of log.</li>
+<li>Counters: A specific representation of identical state changes that potentially occur in high frequency. Examples include network interface counters (packets, bytes), drop, error counters etc.  Counters are useful in debugging and visibility into operational behavior of the NSF. An I2NSF Agent that observes the progress of counters can act as an I2NSF Producer and emit Events in respect to I2NSF Policy Rules.</li>
+</ul>
+<h1 id="rfc.section.5">
+<a href="#rfc.section.5">5.</a> <a href="#exporting-nsf-monitoring-data" id="exporting-nsf-monitoring-data">Exporting NSF Monitoring Data</a>
+</h1>
+<p id="rfc.section.5.p.1">As per the use cases of NSF monitoring data, the data need to be sent to various consumers based on the needs and requirements. There are multiple things to be considered for exporting this data to needed parties as listed below:</p>
+<p></p>
+
+<ul>
+<li>Pull-Push model: A set of data could be pushed by a NSF to the needed party or pulled by the needed party from a NSF. A specific data might need both the models at the same time if there are multiple consumers with varying requirements. It really depends upon the need and its usages to the consumer. In general, any alarm is considered to be of great importance and must be sent immediately for any meaningful action so it should be sent using push model but logs are not as critical so could be pulled by the consumer. The I2NSF does not mandate a specific scheme for each data set, it is up to each implementation.</li>
+<li>Export frequency: The monitoring data could be sent immediately upon generation by a NSF to interested parties or pushed periodically. The frequency of exporting the data depends upon its size and timely usefulness. It is out of the scope of I2NSF and left to each NSF implementation.</li>
+<li>Authentication: There may be a need for authentication between monitoring data producer (NSF) and consumer to ensure that critical information does not fall into wrong hands. This may be necessary if the NSF directly export data to the consumer outside its admin boundary. The I2NSF does not mandate when and how specific authentication must be done.</li>
+<li>Subscription method: In order for the consumer to pull the data from NSF or for NSF to push the data to a consumer, there must be a mechanism for consumer to subscribe to the NSF data it is interested in. There are few open source method available and it is up to each implementation to decide the right one.</li>
+<li>Data transfer mode: The data could be pushed by NSF using a connection-less model that does require a persistent connection or streamed over a persistent connection. It depends upon the requirement of the consumer and the nature of data. A particular set of data can use either or both the mode based on implementation.</li>
+<li>Transport method: There are lot of transport mechanism such as IP, UDP, TCP. There are also open source implementations for specific set of data such as systems counter. The I2NSF does not mandate any specific method for a given data set, it is up to each implementation.</li>
+</ul>
+<h1 id="rfc.section.6">
+<a href="#rfc.section.6">6.</a> <a href="#basic-information-model-for-all-monitoring-data" id="basic-information-model-for-all-monitoring-data">Basic Information Model for All Monitoring Data</a>
+</h1>
+<p id="rfc.section.6.p.1">As explained in the above section, there is a wealth of data available from the NSF that can be monitored. Firstly, there must be some general information with each monitoring message sent from an NSF that helps consumer in identifying meta data with that message, which are listed as below:</p>
+<p></p>
+
+<ul>
+<li>message_version: Indicate the version of the data format and is a two-digit decimal numeral starting from 01</li>
+<li>message_type: Event, Alert, Alarm, Log, Counter, etc</li>
+<li>time_stamp: Indicate the time when the message is generated</li>
+<li>vendor_name: The name of the NSF vendor</li>
+<li>NSF_name: The name (or IP) of the NSF generating the message</li>
+<li>Module_name: The module name outputting the message</li>
+<li>Severity: Indicates the level of the logs. There are total eight levels, from 0 to 7. The smaller the numeral is, the higher the severity is.</li>
+</ul>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> <a href="#extended-information-model-for-monitoring-data" id="extended-information-model-for-monitoring-data">Extended Information Model for Monitoring Data</a>
+</h1>
+<p id="rfc.section.7.p.1">This section covers the additional information associated with the system messages. The extended information model is only for the structured data such as alarm. Any unstructured data is specified with basic information model only.</p>
+<p id="rfc.section.7.p.2">[Editors&#8217; note]: This section remains the same as -02 version, although the classification of the monitoring data has been changed from -02 version. The new inconsistency will be addressed in next verion.</p>
+<h1 id="rfc.section.7.1">
+<a href="#rfc.section.7.1">7.1.</a> <a href="#system-alarm" id="system-alarm">System Alarm</a>
+</h1>
+<h1 id="rfc.section.7.1.1">
+<a href="#rfc.section.7.1.1">7.1.1.</a> <a href="#memory-alarm" id="memory-alarm">Memory Alarm</a>
+</h1>
+<p id="rfc.section.7.1.1.p.1">The following information should be included in a Memory Alarm:</p>
+<p></p>
+
+<ul>
+<li>event_name: &#8216;MEM_USAGE_ALARM&#8217;</li>
+<li>module_name: Indicate the NSF module responsible for generating this alarm</li>
+<li>usage: specifies the amount of memory used</li>
+<li>threshold: The threshold triggering the alarm</li>
+<li>severity: The severity of the alarm such as critical, high, medium, low</li>
+<li>message: &#8216;The memory usage exceeded the threshold&#8217;</li>
+</ul>
+<h1 id="rfc.section.7.1.2">
+<a href="#rfc.section.7.1.2">7.1.2.</a> <a href="#cpu-alarm" id="cpu-alarm">CPU Alarm</a>
+</h1>
+<p id="rfc.section.7.1.2.p.1">The following information should be included in a CPU Alarm:</p>
+<p></p>
+
+<ul>
+<li>event_name: &#8216;CPU_USAGE_ALARM&#8217;</li>
+<li>usage: Specifies the amount of CPU used</li>
+<li>threshold: The threshold triggering the event</li>
+<li>severity: The severity of the alarm such as critical, high, medium, low</li>
+<li>message: &#8216;The CPU usage exceeded the threshold&#8217;</li>
+</ul>
+<h1 id="rfc.section.7.1.3">
+<a href="#rfc.section.7.1.3">7.1.3.</a> <a href="#disk-alarm" id="disk-alarm">Disk Alarm</a>
+</h1>
+<p id="rfc.section.7.1.3.p.1">The following information should be included in a Disk Alarm:</p>
+<p></p>
+
+<ul>
+<li>event_name: &#8216;DISK_USAGE_ALARM&#8217;</li>
+<li>usage: Specifies the amount of disk space used</li>
+<li>threshold: The threshold triggering the event</li>
+<li>severity: The severity of the alarm such as critical, high, medium, low</li>
+<li>message: &#8216;The disk usage exceeded the threshold&#8217;</li>
+</ul>
+<h1 id="rfc.section.7.1.4">
+<a href="#rfc.section.7.1.4">7.1.4.</a> <a href="#hardware-alarm" id="hardware-alarm">Hardware Alarm</a>
+</h1>
+<p id="rfc.section.7.1.4.p.1">The following information should be included in a Hardware Alarm:</p>
+<p></p>
+
+<ul>
+<li>event_name: &#8216;HW_FAILURE_ALARM&#8217;</li>
+<li>component_name: Indicate the HW component responsible for generating this alarm</li>
+<li>threshold: The threshold triggering the alarm</li>
+<li>severity: The severity of the alarm such as critical, high, medium, low</li>
+<li>message: &#8216;The HW component has failed or degraded&#8217;</li>
+</ul>
+<h1 id="rfc.section.7.1.5">
+<a href="#rfc.section.7.1.5">7.1.5.</a> <a href="#interface-alarm" id="interface-alarm">Interface Alarm</a>
+</h1>
+<p id="rfc.section.7.1.5.p.1">The following information should be included in a Interface Alarm:</p>
+<p></p>
+
+<ul>
+<li>event_name: &#8216;IFNET_STATE_ALARM&#8217;</li>
+<li>interface_Name: The name of interface</li>
+<li>interface_state: &#8216;UP&#8217;, &#8216;DOWN&#8217;, &#8216;CONGESTED&#8217;</li>
+<li>threshold: The threshold triggering the event</li>
+<li>severity: The severity of the alarm such as critical, high, medium, low</li>
+<li>message: &#8216;Current interface state&#8217;</li>
+</ul>
+<h1 id="rfc.section.7.2">
+<a href="#rfc.section.7.2">7.2.</a> <a href="#system-events" id="system-events">System Events</a>
+</h1>
+<h1 id="rfc.section.7.2.1">
+<a href="#rfc.section.7.2.1">7.2.1.</a> <a href="#access-violation" id="access-violation">Access Violation</a>
+</h1>
+<p id="rfc.section.7.2.1.p.1">The following information should be included in this event:</p>
+<p></p>
+
+<ul>
+<li>event_name: &#8216;ACCESS_DENIED&#8217;</li>
+<li>user: Name of a user</li>
+<li>group: Group to which a user belongs</li>
+<li>login_ip_address: Login IP address of a user</li>
+<li>authentication_mode: User authentication mode. e.g., Local Authentication, Third-Party Server Authentication, Authentication Exemption, SSO Authentication</li>
+<li>message: &#8216;access denied&#8217;</li>
+</ul>
+<h1 id="rfc.section.7.2.2">
+<a href="#rfc.section.7.2.2">7.2.2.</a> <a href="#configuration-change" id="configuration-change">Configuration Change</a>
+</h1>
+<p id="rfc.section.7.2.2.p.1">The following information should be included in this event:</p>
+<p></p>
+
+<ul>
+<li>event_name: &#8216;CONFIG_CHANGE&#8217;</li>
+<li>user: Name of a user</li>
+<li>group: Group to which a user belongs</li>
+<li>login_ip_address: Login IP address of a user</li>
+<li>authentication_mode: User authentication mode. e.g., Local Authentication, Third-Party Server Authentication, Authentication Exemption, SSO Authentication</li>
+<li>message: &#8216;Configuration modified&#8217;</li>
+</ul>
+<h1 id="rfc.section.7.3">
+<a href="#rfc.section.7.3">7.3.</a> <a href="#system-log" id="system-log">System Log</a>
+</h1>
+<h1 id="rfc.section.7.3.1">
+<a href="#rfc.section.7.3.1">7.3.1.</a> <a href="#access-logs" id="access-logs">Access Logs</a>
+</h1>
+<p id="rfc.section.7.3.1.p.1">Access logs record administrators&#8217; login, logout, and operations on the device. By analyzing them, security vulnerabilities can be identified. The following information should be included in operation report:</p>
+<p></p>
+
+<ul>
+<li>Administrator: Administrator that operates on the device</li>
+<li>login_ip_address: IP address used by an administrator to log in</li>
+<li>login_mode: Specifies the administrator logs in mode e.g.  root, user</li>
+<li>operation_type: The operation type that the administrator execute, e.g., login, logout, configuration, etc</li>
+<li>result: Command execution result</li>
+<li>content: Operation performed by an administrator after login.</li>
+</ul>
+<h1 id="rfc.section.7.3.2">
+<a href="#rfc.section.7.3.2">7.3.2.</a> <a href="#resource-utilization-logs" id="resource-utilization-logs">Resource Utilization Logs</a>
+</h1>
+<p id="rfc.section.7.3.2.p.1">Running reports record the device system&#8217;s running status, which is useful for device monitoring. The following information should be included in running report:</p>
+<p></p>
+
+<ul>
+<li>system_status: The current system&#8217;s running status</li>
+<li>CPU_usage: Specifies the CPU usage</li>
+<li>memory_usage: Specifies the memory usage</li>
+<li>disk_usage: Specifies the disk usage</li>
+<li>disk_left: Specifies the available disk space left</li>
+<li>session_number: Specifies total concurrent sessions</li>
+<li>process_number: Specifies total number of system processes</li>
+<li>in_traffic_rate: The total inbound traffic rate in pps</li>
+<li>out_traffic_rate: The total outbound traffic rate in pps</li>
+<li>in_traffic_speed: The total inbound traffic speed in bps</li>
+<li>out_traffic_speed: The total outbound traffic speed in bps</li>
+</ul>
+<h1 id="rfc.section.7.3.3">
+<a href="#rfc.section.7.3.3">7.3.3.</a> <a href="#user-activity-logs" id="user-activity-logs">User Activity Logs</a>
+</h1>
+<p id="rfc.section.7.3.3.p.1">User activity logs provide visibility into users&#8217; online records (such as login time, online/lockout duration, and login IP addresses) and the actions users perform. User activity reports are helpful to identify exceptions during user login and network access activities.</p>
+<p></p>
+
+<ul>
+<li>user: Name of a user</li>
+<li>group: Group to which a user belongs</li>
+<li>login_ip_address: Login IP address of a user</li>
+<li>authentication_mode: User authentication mode. e.g., Local Authentication, Third-Party Server Authentication, Authentication Exemption, SSO Authentication</li>
+<li>access_mode: User access mode. e.g., PPP, SVN, LOCAL</li>
+<li>online_duration: Online duration</li>
+<li>lockout_duration: Lockout duration</li>
+<li>type: User activities. e.g., Successful User Login, Failed Login attempts, User Logout, Successful User Password Change, Failed User Password Change, User Lockout, User Unlocking, Unknown</li>
+<li>cause: Cause of a failed user activity</li>
+</ul>
+<h1 id="rfc.section.7.4">
+<a href="#rfc.section.7.4">7.4.</a> <a href="#system-counters" id="system-counters">System Counters</a>
+</h1>
+<h1 id="rfc.section.7.4.1">
+<a href="#rfc.section.7.4.1">7.4.1.</a> <a href="#interface-counters" id="interface-counters">Interface counters</a>
+</h1>
+<p id="rfc.section.7.4.1.p.1">Interface counters provide visibility into traffic into and out of NSF, bandwidth usage.</p>
+<p></p>
+
+<ul>
+<li>interface_name: Network interface name configured in NSF</li>
+<li>in_total_traffic_pkts: Total inbound packets</li>
+<li>out_total_traffic_pkts: Total outbound packets</li>
+<li>in_total_traffic_bytes: Total inbound bytes</li>
+<li>out_total_traffic_bytes: Total outbound bytes</li>
+<li>in_drop_traffic_pkts: Total inbound drop packets</li>
+<li>out_drop_traffic_pkts: Total outbound drop packets</li>
+<li>in_drop_traffic_bytes: Total inbound drop bytes</li>
+<li>out_drop_traffic_bytes: Total outbound drop bytes</li>
+<li>in_traffic_ave_rate: Inbound traffic average rate in pps</li>
+<li>in_traffic_peak_rate: Inbound traffic peak rate in pps</li>
+<li>in_traffic_ave_speed: Inbound traffic average speed in bps</li>
+<li>in_traffic_peak_speed: Inbound traffic peak speed in bps</li>
+<li>out_traffic_ave_rate: Outbound traffic average rate in pps</li>
+<li>out_traffic_peak_rate: Outbound traffic peak rate in pps</li>
+<li>out_traffic_ave_speed: Outbound traffic average speed in bps</li>
+<li>out_traffic_peak_speed: Outbound traffic peak speed in bps.</li>
+</ul>
+<h1 id="rfc.section.7.5">
+<a href="#rfc.section.7.5">7.5.</a> <a href="#nsf-events" id="nsf-events">NSF Events</a>
+</h1>
+<h1 id="rfc.section.7.5.1">
+<a href="#rfc.section.7.5.1">7.5.1.</a> <a href="#ddos-event" id="ddos-event">DDoS Event</a>
+</h1>
+<p id="rfc.section.7.5.1.p.1">The following information should be included in a DDoS Event:</p>
+<p></p>
+
+<ul>
+<li>event_name: &#8216;SEC_EVENT_DDoS&#8217;</li>
+<li>sub_attack_type: Any one of Syn flood, ACK flood, SYN-ACK flood, FIN/RST flood, TCP Connection flood, UDP flood, Icmp flood, HTTPS flood, HTTP flood, DNS query flood, DNS reply flood, SIP flood, and etc.</li>
+<li>dst_ip: The IP address of a victum under attack</li>
+<li>dst_port: The port numbers that the attrack traffic aims at.</li>
+<li>start_time: The time stamp indicating when the attack started</li>
+<li>end_time: The time stamp indicating when the attack ended. If the attack is still undergoing when sending out the alarm, this field can be empty.</li>
+<li>attack_rate: The PPS of attack traffic</li>
+<li>attack_speed: the bps of attack traffic</li>
+<li>rule_id: The ID of the rule being triggered</li>
+<li>rule_name: The name of the rule being triggered</li>
+<li>profile: Security profile that traffic matches.</li>
+</ul>
+<h1 id="rfc.section.7.5.2">
+<a href="#rfc.section.7.5.2">7.5.2.</a> <a href="#session-table-event" id="session-table-event">Session Table Event</a>
+</h1>
+<p id="rfc.section.7.5.2.p.1">The following information should be included in a Session Table Event:</p>
+<p></p>
+
+<ul>
+<li>event_name: &#8216;SESSION_USAGE_HIGH&#8217;</li>
+<li>current: The number of concurrent sessions</li>
+<li>max: The maximum number of sessions that the session table can support</li>
+<li>threshold: The threshold triggering the event</li>
+<li>message: &#8216;The number of session table exceeded the threshold&#8217;</li>
+</ul>
+<h1 id="rfc.section.7.5.3">
+<a href="#rfc.section.7.5.3">7.5.3.</a> <a href="#virus-event" id="virus-event">Virus Event</a>
+</h1>
+<p id="rfc.section.7.5.3.p.1">The following information should be included in a Virus Event:</p>
+<p></p>
+
+<ul>
+<li>event_Name: &#8216;SEC_EVENT_VIRUS&#8217;</li>
+<li>virus_type: Type of the virus, e.g., trojan, worm, macro Virus type</li>
+<li>virus_name</li>
+<li>dst_ip: The destination IP address of the packet where the virus is found</li>
+<li>src_ip: The source IP address of the packet where the virus is found</li>
+<li>src_port: The source port of the packet where the virus is found</li>
+<li>dst_port: The destination port of the packet where the virus is found</li>
+<li>src_zone: The source security zone of the packet where the virus is found</li>
+<li>dst_zone: The destination security zone of the packet where the virus is found</li>
+<li>file_type: The type of the file where the virus is hided within</li>
+<li>file_name: The name of the file where the virus is hided within</li>
+<li>virus_info: The brief introduction of virus</li>
+<li>raw_info: The information describing the packet triggering the event.</li>
+<li>rule_id: The ID of the rule being triggered</li>
+<li>rule_name: The name of the rule being triggered</li>
+<li>profile: Security profile that traffic matches.</li>
+</ul>
+<h1 id="rfc.section.7.5.4">
+<a href="#rfc.section.7.5.4">7.5.4.</a> <a href="#intrusion-event" id="intrusion-event">Intrusion Event</a>
+</h1>
+<p id="rfc.section.7.5.4.p.1">The following information should be included in a Intrustion Event:</p>
+<p></p>
+
+<ul>
+<li>event_name: The name of event: &#8216;SEC_EVENT_Intrusion&#8217;</li>
+<li>sub_attack_type: Attack type, e.g., brutal force, buffer overflow</li>
+<li>src_ip: The source IP address of the packet</li>
+<li>dst_ip: The destination IP address of the packet</li>
+<li>src_port:The source port number of the packet</li>
+<li>dst_port: The destination port number of the packet</li>
+<li>src_zone: The source security zone of the packet</li>
+<li>dst_zone: The destination security zone of the packet</li>
+<li>protocol: The employed transport layer protocol, e.g.,TCP, UDP</li>
+<li>app: The employed application layer protocol, e.g.,HTTP, FTP</li>
+<li>rule_id: The ID of the rule being triggered</li>
+<li>rule_name: The name of the rule being triggered</li>
+<li>profile: Security profile that traffic matches</li>
+<li>intrusion_info: Simple description of intrusion</li>
+<li>raw_info: The information describing the packet triggering the event.</li>
+</ul>
+<h1 id="rfc.section.7.5.5">
+<a href="#rfc.section.7.5.5">7.5.5.</a> <a href="#botnet-event" id="botnet-event">Botnet Event</a>
+</h1>
+<p id="rfc.section.7.5.5.p.1">The following information should be included in a Botnet Event:</p>
+<p></p>
+
+<ul>
+<li>event_name: the name of event: &#8216;SEC_EVENT_Botnet&#8217;</li>
+<li>botnet_name: The name of the detected botnet</li>
+<li>src_ip: The source IP address of the packet</li>
+<li>dst_ip: The destination IP address of the packet</li>
+<li>src_port: The source port number of the packet</li>
+<li>dst_port: The destination port number of the packet</li>
+<li>src_zone: The source security zone of the packet</li>
+<li>dst_zone: The destination security zone of the packet</li>
+<li>protocol: The employed transport layer protocol, e.g.,TCP, UDP</li>
+<li>app: The employed application layer protocol, e.g.,HTTP, FTP</li>
+<li>role: The role of the communicating parties within the botnet:  <ol>
+<li>the packet from zombie host to the attacker</li>
+<li>The packet from the attacker to the zombie host</li>
+<li>The packet from the IRC/WEB server to the zombie host</li>
+<li>The packet from the zombie host to the IRC/WEB server</li>
+<li>The packet from the attacker to the IRC/WEB server</li>
+<li>The packet from the IRC/WEB server to the attacker</li>
+<li>The packet from the zombie host to the victim</li>
+</ol>
+</li>
+<li>botnet_info: Simple description of Botnet</li>
+<li>rule_id: The ID of the rule being triggered</li>
+<li>rule_name: The name of the rule being triggered</li>
+<li>profile: Security profile that traffic matches</li>
+<li>raw_info: The information describing the packet triggering the event.</li>
+</ul>
+<h1 id="rfc.section.7.5.6">
+<a href="#rfc.section.7.5.6">7.5.6.</a> <a href="#web-attack-event" id="web-attack-event">Web Attack Event</a>
+</h1>
+<p id="rfc.section.7.5.6.p.1">The following information should be included in a Web Attack Alarm:</p>
+<p></p>
+
+<ul>
+<li>event_name: the name of event: &#8216;SEC_EVENT_WebAttack&#8217;</li>
+<li>sub_attack_type: Concret web attack type, e.g., sql injection, command injection, XSS, CSRF</li>
+<li>src_ip: The source IP address of the packet</li>
+<li>dst_ip: The destination IP address of the packet</li>
+<li>src_port: The source port number of the packet</li>
+<li>dst_port: The destination port number of the packet</li>
+<li>src_zone: The source security zone of the packet</li>
+<li>dst_zone: The destination security zone of the packet</li>
+<li>req_method: The method of requirement. For instance, &#8216;PUT&#8217; or &#8216;GET&#8217; in HTTP</li>
+<li>req_url: Requested URL</li>
+<li>url_category: Matched URL category</li>
+<li>filtering_type: URL filtering type, e.g., Blacklist, Whitelist, User-Defined, Predefined, Malicious Category, Unknown</li>
+<li>rule_id: The ID of the rule being triggered</li>
+<li>rule_name: The name of the rule being triggered</li>
+<li>profile: Security profile that traffic matches.</li>
+</ul>
+<h1 id="rfc.section.7.6">
+<a href="#rfc.section.7.6">7.6.</a> <a href="#nsf-logs" id="nsf-logs">NSF Logs</a>
+</h1>
+<h1 id="rfc.section.7.6.1">
+<a href="#rfc.section.7.6.1">7.6.1.</a> <a href="#ddos-logs" id="ddos-logs">DDoS Logs</a>
+</h1>
+<p id="rfc.section.7.6.1.p.1">Besides the fields in an DDoS Alarm, the following information should be included in a DDoS Logs:</p>
+<p></p>
+
+<ul>
+<li>attack_type: DDoS</li>
+<li>attack_ave_rate: The average pps of the attack traffic within the recorded time</li>
+<li>attack_ave_speed: The average bps of the attack traffic within the recorded time</li>
+<li>attack_pkt_num: The number attack packets within the recorded time</li>
+<li>attack_src_ip: The source IP addresses of attack traffics. If there are a large amount of IP addresses, then pick a certain number of resources according to different rules.</li>
+<li>action: Actions against DDoS attacks, e.g., Allow, Alert, Block, Discard, Declare, Block-ip, Block-service.</li>
+</ul>
+<h1 id="rfc.section.7.6.2">
+<a href="#rfc.section.7.6.2">7.6.2.</a> <a href="#virus-logs" id="virus-logs">Virus Logs</a>
+</h1>
+<p id="rfc.section.7.6.2.p.1">Besides the fields in an Virus Alarm, the following information should be included in a Virus Logs:</p>
+<p></p>
+
+<ul>
+<li>attack_type: Virus</li>
+<li>protocol: The transport layer protocol</li>
+<li>app: The name of the application layer protocol</li>
+<li>times: The time of detecting the virus</li>
+<li>action: The actions dealing with the virus, e.g., alert, block</li>
+<li>os: The OS that the virus will affect, e.g., all, android, ios, unix, windows</li>
+</ul>
+<h1 id="rfc.section.7.6.3">
+<a href="#rfc.section.7.6.3">7.6.3.</a> <a href="#intrusion-logs" id="intrusion-logs">Intrusion Logs</a>
+</h1>
+<p id="rfc.section.7.6.3.p.1">Besides the fields in an Intrusion Alarm, the following information should be included in a Intrusion Logs:</p>
+<p></p>
+
+<ul>
+<li>attack_type: Intrusion</li>
+<li>times: The times of intrusions happened in the recorded time</li>
+<li>os: The OS that the intrusion will affect, e.g., all, android, ios, unix, windows</li>
+<li>action: The actions dealing with the intrusions, e.g., e.g., Allow, Alert, Block, Discard, Declare, Block-ip, Block-service</li>
+<li>attack_rate: NUM the pps of attack traffic</li>
+<li>attack_speed: NUM the bps of attack traffic</li>
+</ul>
+<h1 id="rfc.section.7.6.4">
+<a href="#rfc.section.7.6.4">7.6.4.</a> <a href="#botnet-logs" id="botnet-logs">Botnet Logs</a>
+</h1>
+<p id="rfc.section.7.6.4.p.1">Besides the fields in an Botnet Alarm, the following information should be included in a Botnet Logs:</p>
+<p></p>
+
+<ul>
+<li>attack_type: Botnet</li>
+<li>botnet_pkt_num:The number of the packets sent to or from the detected botnet</li>
+<li>action: The actions dealing with the detected packets, e.g., Allow, Alert, Block, Discard, Declare, Block-ip, Block-service, etc</li>
+<li>os: The OS that the attack aiming at, e.g., all, android, ios, unix, windows, etc.</li>
+</ul>
+<h1 id="rfc.section.7.6.5">
+<a href="#rfc.section.7.6.5">7.6.5.</a> <a href="#dpi-logs" id="dpi-logs">DPI Logs</a>
+</h1>
+<p id="rfc.section.7.6.5.p.1">DPI Logs provide statistics on uploaded and downloaded files and data, sent and received emails, and alert and block records on websites. It&#8217;s helpful to learn risky user behaviors and why access to some URLs is blocked or allowed with an alert record.</p>
+<p></p>
+
+<ul>
+<li>type: DPI action types. e.g., File Blocking, Data Filtering, Application Behavior Control</li>
+<li>file_name: The file name</li>
+<li>file_type: The file type</li>
+<li>src_zone: Source security zone of traffic</li>
+<li>dst_zone: Destination security zone of traffic</li>
+<li>src_region: Source region of the traffic</li>
+<li>dst_region: Destination region of the traffic</li>
+<li>src_ip: Source IP address of traffic</li>
+<li>src_user: User who generates traffic</li>
+<li>dst_ip: Destination IP address of traffic</li>
+<li>src_port: Source port of traffic</li>
+<li>dst_port: Destination port of traffic</li>
+<li>protocol: Protocol type of traffic</li>
+<li>app: Application type of traffic</li>
+<li>policy_id: Security policy id that traffic matches</li>
+<li>policy_name: Security policy name that traffic matches</li>
+<li>action: Action defined in the file blocking rule, data filtering rule, or application behavior control rule that traffic matches.</li>
+</ul>
+<h1 id="rfc.section.7.6.6">
+<a href="#rfc.section.7.6.6">7.6.6.</a> <a href="#vulnerabillity-scanning-logs" id="vulnerabillity-scanning-logs">Vulnerabillity Scanning Logs</a>
+</h1>
+<p id="rfc.section.7.6.6.p.1">Vulnerability scanning logs record the victim host and its related vulnerability information that should to be fixed. the following information should be included in the report:</p>
+<p></p>
+
+<ul>
+<li>victim_ip: IP address of the victim host which has vulnerabilities</li>
+<li>vulnerability_id: The vulnerability id</li>
+<li>vulnerability_level: The vulnerability level. e.g., high, middle, low</li>
+<li>OS: The operating system of the victim host</li>
+<li>service: The service which has vulnerabillity in the victim host</li>
+<li>protocol: The protocol type. e.g., TCP, UDP</li>
+<li>port: The port number</li>
+<li>vulnerability_info: The information about the vulnerability</li>
+<li>fix_suggestion: The fix suggestion to the vulnerability.</li>
+</ul>
+<h1 id="rfc.section.7.6.7">
+<a href="#rfc.section.7.6.7">7.6.7.</a> <a href="#web-attack-logs" id="web-attack-logs">Web Attack Logs</a>
+</h1>
+<p id="rfc.section.7.6.7.p.1">Besides the fields in an Web Attack Alarm, the following information should be included in a Web Attack Report:</p>
+<p></p>
+
+<ul>
+<li>attack_type: Web Attack</li>
+<li>rsp_code: Response code</li>
+<li>req_clientapp: The client application</li>
+<li>req_cookies: Cookies</li>
+<li>req_host: The domain name of the requested host</li>
+<li>raw_info: The information describing the packet triggering the event.</li>
+</ul>
+<h1 id="rfc.section.7.7">
+<a href="#rfc.section.7.7">7.7.</a> <a href="#nsf-counters" id="nsf-counters">NSF Counters</a>
+</h1>
+<h1 id="rfc.section.7.7.1">
+<a href="#rfc.section.7.7.1">7.7.1.</a> <a href="#firewall-counters" id="firewall-counters">Firewall counters</a>
+</h1>
+<p id="rfc.section.7.7.1.p.1">Firewall counters provide visibility into traffic signatures, bandwidth usage, and how the configured security and bandwidth policies have been applied.</p>
+<p></p>
+
+<ul>
+<li>src_zone: Source security zone of traffic</li>
+<li>dst_zone: Destination security zone of traffic</li>
+<li>src_region: Source region of the traffic</li>
+<li>dst_region: Destination region of the traffic</li>
+<li>src_ip: Source IP address of traffic</li>
+<li>src_user: User who generates traffic</li>
+<li>dst_ip: Destination IP address of traffic</li>
+<li>src_port: Source port of traffic</li>
+<li>dst_port: Destination port of traffic</li>
+<li>protocol: Protocol type of traffic</li>
+<li>app: Application type of traffic</li>
+<li>policy_id: Security policy id that traffic matches</li>
+<li>policy_name: Security policy name that traffic matches</li>
+<li>in_interface: Inbound interface of traffic</li>
+<li>out_interface: Outbound interface of traffic</li>
+<li>total_traffic: Total traffic volume</li>
+<li>in_traffic_ave_rate: Inbound traffic average rate in pps</li>
+<li>in_traffic_peak_rate: Inbound traffic peak rate in pps</li>
+<li>in_traffic_ave_speed: Inbound traffic average speed in bps</li>
+<li>in_traffic_peak_speed: Inbound traffic peak speed in bps</li>
+<li>out_traffic_ave_rate: Outbound traffic average rate in pps</li>
+<li>out_traffic_peak_rate: Outbound traffic peak rate in pps</li>
+<li>out_traffic_ave_speed: Outbound traffic average speed in bps</li>
+<li>out_traffic_peak_speed: Outbound traffic peak speed in bps.</li>
+</ul>
+<h1 id="rfc.section.7.7.2">
+<a href="#rfc.section.7.7.2">7.7.2.</a> <a href="#policy-hit-counters" id="policy-hit-counters">Policy Hit Counters</a>
+</h1>
+<p id="rfc.section.7.7.2.p.1">Policy Hit Counters record the security policy that traffic matches and its hit count. It can check if policy configurations are correct.</p>
+<p></p>
+
+<ul>
+<li>src_zone: Source security zone of traffic</li>
+<li>dst_zone: Destination security zone of traffic</li>
+<li>src_region: Source region of the traffic</li>
+<li>dst_region: Destination region of the traffic</li>
+<li>src_ip: Source IP address of traffic</li>
+<li>src_user: User who generates traffic</li>
+<li>dst_ip: Destination IP address of traffic</li>
+<li>src_port: Source port of traffic</li>
+<li>dst_port: Destination port of traffic</li>
+<li>protocol: Protocol type of traffic</li>
+<li>app: Application type of traffic</li>
+<li>policy_id: Security policy id that traffic matches</li>
+<li>policy_name: Security policy name that traffic matches</li>
+<li>hit_times: The hit times that the security policy matches the specified traffic.</li>
+</ul>
+<h1 id="rfc.section.8">
+<a href="#rfc.section.8">8.</a> <a href="#IANA" id="IANA">IANA Considerations</a>
+</h1>
+<p id="rfc.section.8.p.1">This document makes no request of IANA.</p>
+<p id="rfc.section.8.p.2">Note to RFC Editor: this section may be removed on publication as an RFC.</p>
+<h1 id="rfc.section.9">
+<a href="#rfc.section.9">9.</a> <a href="#Security" id="Security">Security Considerations</a>
+</h1>
+<p id="rfc.section.9.p.1">The monitoring information of NSF should be protected by the secure communication channel, to ensure its confidentiality and integrity. In another side, the NSF and security controller can all be faked, which lead to undesireable results, i.e., leakage of NSF&#8217;s important operational information, faked NSF sending false information to mislead security controller. The mutual authentication is essential to protected against this kind of attack. The current mainstream security technologies (i.e., TLS, DTLS, IPSEC, X.509 PKI) can be employed approriately to provide the above security functions.</p>
+<p id="rfc.section.9.p.2">In addition, to defend against the DDoS attack caused by a lot of NSFs sending massive monitoring information to the security controller, the rate limiting or similar mechanisms should be considered in NSF and security controller, whether in advance or just in the process of DDoS attack.</p>
+<h1 id="rfc.references">
+<a href="#rfc.references">10.</a> References</h1>
+<h1 id="rfc.references.1">
+<a href="#rfc.references.1">10.1.</a> Normative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="RFC2119">[RFC2119]</b></td>
+<td class="top">
+<a>Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3877">[RFC3877]</b></td>
+<td class="top">
+<a>Chisholm, S.</a> and <a>D. Romascanu</a>, "<a href="http://tools.ietf.org/html/rfc3877">Alarm Management Information Base (MIB)</a>", RFC 3877, DOI 10.17487/RFC3877, September 2004.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4765">[RFC4765]</b></td>
+<td class="top">
+<a>Debar, H.</a>, <a>Curry, D.</a> and <a>B. Feinstein</a>, "<a href="http://tools.ietf.org/html/rfc4765">The Intrusion Detection Message Exchange Format (IDMEF)</a>", RFC 4765, DOI 10.17487/RFC4765, March 2007.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.references.2">
+<a href="#rfc.references.2">10.2.</a> Informative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="I-D.ietf-i2nsf-framework">[I-D.ietf-i2nsf-framework]</b></td>
+<td class="top">
+<a>Lopez, D.</a>, <a>Lopez, E.</a>, <a>Dunbar, L.</a>, <a>Strassner, J.</a> and <a>R. Kumar</a>, "<a href="http://tools.ietf.org/html/draft-ietf-i2nsf-framework-05">Framework for Interface to Network Security Functions</a>", Internet-Draft draft-ietf-i2nsf-framework-05, May 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-i2nsf-terminology">[I-D.ietf-i2nsf-terminology]</b></td>
+<td class="top">
+<a>Hares, S.</a>, <a>Strassner, J.</a>, <a>Lopez, D.</a>, <a>Xia, L.</a> and <a>H. Birkholz</a>, "<a href="http://tools.ietf.org/html/draft-ietf-i2nsf-terminology-03">Interface to Network Security Functions (I2NSF) Terminology</a>", Internet-Draft draft-ietf-i2nsf-terminology-03, March 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.xia-i2nsf-capability-interface-im">[I-D.xia-i2nsf-capability-interface-im]</b></td>
+<td class="top">
+<a>Xia, L.</a>, <a>Strassner, J.</a>, <a>Li, K.</a>, <a>Zhang, D.</a>, <a>Lopez, E.</a>, <a>Bouthors, N.</a> and <a>L. Fang</a>, "<a href="http://tools.ietf.org/html/draft-xia-i2nsf-capability-interface-im-06">Information Model of Interface to Network Security Functions Capability Interface</a>", Internet-Draft draft-xia-i2nsf-capability-interface-im-06, July 2016.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.xibassnez-i2nsf-capability">[I-D.xibassnez-i2nsf-capability]</b></td>
+<td class="top">
+<a>Xia, L.</a>, <a>Strassner, J.</a>, <a>Basile, C.</a> and <a>D. Lopez</a>, "<a href="http://tools.ietf.org/html/draft-xibassnez-i2nsf-capability-01">Information Model of NSFs Capabilities</a>", Internet-Draft draft-xibassnez-i2nsf-capability-01, March 2017.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.acknowledgements"><a href="#rfc.acknowledgements">Acknowledgements</a></h1>
+<h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Liang Xia</span> 
+	  <span class="n hidden">
+		<span class="family-name">Xia</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Huawei</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:frank.xialiang@huawei.com">frank.xialiang@huawei.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Dacheng Zhang</span> 
+	  <span class="n hidden">
+		<span class="family-name">Zhang</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Huawei</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:dacheng.zhang@huawei.com">dacheng.zhang@huawei.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Yi Wu</span> 
+	  <span class="n hidden">
+		<span class="family-name">Wu</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Aliababa Group</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:anren.wy@alibaba-inc.com">anren.wy@alibaba-inc.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Rakesh Kumar</span> 
+	  <span class="n hidden">
+		<span class="family-name">Kumar</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Juniper Networks</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:rkkumar@juniper.net">rkkumar@juniper.net</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Anil Lohiya</span> 
+	  <span class="n hidden">
+		<span class="family-name">Lohiya</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Juniper Networks</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:alohiya@juniper.net">alohiya@juniper.net</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Henk Birkholz</span> 
+	  <span class="n hidden">
+		<span class="family-name">Birkholz</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Fraunhofer SIT</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:henk.birkholz@sit.fraunhofer.de">henk.birkholz@sit.fraunhofer.de</a></span>
+
+  </address>
+</div>
+
+  <div class="github-fork-ribbon-wrapper"><div class="github-fork-ribbon"><a href="https://github.com/henkbirkholz/draft-zhang-i2nsf-info-model-monitoring">Fork me on GitHub</a></div></div>
+</body>
+</html>
