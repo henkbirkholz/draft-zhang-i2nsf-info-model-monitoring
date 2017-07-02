@@ -283,7 +283,11 @@ address {
 <link href="#rfc.section.2.2" rel="Chapter" title="2.2 Definition of Terms">
 <link href="#rfc.section.3" rel="Chapter" title="3 Use cases for NSF Monitoring Data">
 <link href="#rfc.section.4" rel="Chapter" title="4 Classification of NSF Monitoring Data">
-<link href="#rfc.section.5" rel="Chapter" title="5 Exporting NSF Monitoring Data">
+<link href="#rfc.section.4.1" rel="Chapter" title="4.1 Emission and Retention">
+<link href="#rfc.section.4.2" rel="Chapter" title="4.2 Notifications and Events">
+<link href="#rfc.section.4.3" rel="Chapter" title="4.3 Unsolicited Poll and Solicited Push">
+<link href="#rfc.section.4.4" rel="Chapter" title="4.4 I2NSF Monitoring Terminology for Retained Information">
+<link href="#rfc.section.5" rel="Chapter" title="5 Conveyance of NSF Monitoring Information">
 <link href="#rfc.section.6" rel="Chapter" title="6 Basic Information Model for All Monitoring Data">
 <link href="#rfc.section.7" rel="Chapter" title="7 Extended Information Model for Monitoring Data">
 <link href="#rfc.section.7.1" rel="Chapter" title="7.1 System Alarm">
@@ -334,8 +338,8 @@ address {
   <meta name="dct.creator" content="Xia, L., Zhang, D., Wu, Y., Kumar, R., Lohiya, A., and H. Birkholz" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-zhang-i2nsf-info-model-monitoring-latest" />
   <meta name="dct.issued" scheme="ISO8601" content="2017-3-13" />
-  <meta name="dct.abstract" content="The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSFs to enforce the security policy provisioning and network security status monitoring . This document focuses on the monitoring part of it and proposes the information model for it." />
-  <meta name="description" content="The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSFs to enforce the security policy provisioning and network security status monitoring . This document focuses on the monitoring part of it and proposes the information model for it." />
+  <meta name="dct.abstract" content="The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSFs to enforce the security policy provisioning and network security status monitoring. This document focuses on the monitoring part of it and proposes the information model for it." />
+  <meta name="description" content="The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSFs to enforce the security policy provisioning and network security status monitoring. This document focuses on the monitoring part of it and proposes the information model for it." />
 
 </head>
 
@@ -397,7 +401,7 @@ address {
   <span class="filename">draft-zhang-i2nsf-info-model-monitoring-latest</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSFs to enforce the security policy provisioning and network security status monitoring . This document focuses on the monitoring part of it and proposes the information model for it.</p>
+<p>The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSFs to enforce the security policy provisioning and network security status monitoring. This document focuses on the monitoring part of it and proposes the information model for it.</p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
@@ -424,7 +428,15 @@ address {
 </li>
 <li>4.   <a href="#rfc.section.4">Classification of NSF Monitoring Data</a>
 </li>
-<li>5.   <a href="#rfc.section.5">Exporting NSF Monitoring Data</a>
+<ul><li>4.1.   <a href="#rfc.section.4.1">Emission and Retention</a>
+</li>
+<li>4.2.   <a href="#rfc.section.4.2">Notifications and Events</a>
+</li>
+<li>4.3.   <a href="#rfc.section.4.3">Unsolicited Poll and Solicited Push</a>
+</li>
+<li>4.4.   <a href="#rfc.section.4.4">I2NSF Monitoring Terminology for Retained Information</a>
+</li>
+</ul><li>5.   <a href="#rfc.section.5">Conveyance of NSF Monitoring Information</a>
 </li>
 <li>6.   <a href="#rfc.section.6">Basic Information Model for All Monitoring Data</a>
 </li>
@@ -517,8 +529,8 @@ address {
   <h1 id="rfc.section.1">
 <a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
 </h1>
-<p id="rfc.section.1.p.1">According to <a href="#I-D.ietf-i2nsf-framework" class="xref">[I-D.ietf-i2nsf-framework]</a>, the interface provided by a NSF (e.g., FW, IPS, Anti-DDOS, or Anti-Virus) to administrative entities (e.g., NMS, security controller) for configuring security function in the NSF and monitoring the NSF is referred to as a &#8216;I2NSF customer-facing interface&#8217;. The monitoring part of it is meant to monitor the NSF e.g. events, alerts, alarms, logs, counters. The monitoring of the NSF plays a very important role in the overall security framework if done in a timely and comprehensive way. The monitoring information generated by a NSF could very well be an early indication of malicious activity, or anomalous behavior, or a potential sign of denial of service attacks.</p>
-<p id="rfc.section.1.p.2">This draft proposes a comprehensive NSF monitoring information model that provide visibility into NSFs. This document will not go into the design details of NSF-facing interface. Instead, this draft is focused on specifying the information that a NSF needs to provide in the monitoring part of the NSF-facing interface, as well as its information model. Besides, <a href="#I-D.xibassnez-i2nsf-capability" class="xref">[I-D.xibassnez-i2nsf-capability]</a> specifies the information model for the security policy provisioning part of the NSF-facing interface.</p>
+<p id="rfc.section.1.p.1">According to <a href="#I-D.ietf-i2nsf-framework" class="xref">[I-D.ietf-i2nsf-framework]</a>, the interface provided by a NSF (e.g., FW, IPS, Anti-DDOS, or Anti-Virus function) to administrative entities (e.g., NMS, security controller) for configuring security function in the NSF and monitoring the NSF is referred to as a &#8216;I2NSF customer-facing interface&#8217;. The monitoring part of it is meant to acquire vital information about the NSF via,  e.g. notifications, events, records, counters. The monitoring of the NSF plays a very important role in the overall security framework if done in a timely and comprehensive way. The monitoring information generated by a NSF could very well be an early indication of malicious activity, or anomalous behavior, or a potential sign of denial of service attacks.</p>
+<p id="rfc.section.1.p.2">This draft proposes a comprehensive NSF monitoring information model that provides visibility into NSFs. This document will not go into the design details of NSF-facing interfaces. Instead, this draft is focused on specifying the information and illustrates the methods that enable a NSF to provide the information required in order to be monitored in a scaleable and efficient way via the NSF-facing interface. The information model for monitoring presented in this document is a complement to the information model for the security policy provisioning part of the NSF-facing interface specified in <a href="#I-D.xibassnez-i2nsf-capability" class="xref">[I-D.xibassnez-i2nsf-capability]</a>.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a>
 </h1>
@@ -547,35 +559,77 @@ address {
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#classification-of-nsf-monitoring-data" id="classification-of-nsf-monitoring-data">Classification of NSF Monitoring Data</a>
 </h1>
-<p id="rfc.section.4.p.1">In order to maintain a strong security posture, it is not only necessary to configure NSF security policies but also to continuously monitor NSF by consuming acquirable monitoring data. This enables security admins to assess what is happening in the network timely. It is not possible to block all the internal and external threats based on static security posture but requires a very dynamic posture with constant visibility. This draft defines a set of information elements (and their scope) that can be acquired from NSF and can be used as monitoring data. In essence, these types of monitoring data can be leveraged to support constant visibility on multiple levels of granularity and can be consumed by corresponding functions. The types of monitoring data as ordered below increase in expressiveness by incorporating more information to the semantics of the monitoring data.  There are two categories of monitoring data. Information that is produced and emitted by an NSF automatically (published data) and information that is produced and retained by the NSF and has to be collected in intervals (retained data):</p>
-<p id="rfc.section.4.p.2">Published Data:</p>
+<p id="rfc.section.4.p.1">In order to maintain a strong security posture, it is not only necessary to configure NSF security policies but also to continuously monitor NSF by consuming acquirable observable information. This enables security admins to assess what is happening in the network timely. It is not possible to block all the internal and external threats based on static security posture. To achieve this goal, a very dynamic posture with constant visibility is required. This draft defines a set of information elements (and their scope) that can be acquired from NSF and can be used as monitoring information. In essence, these types of monitoring information can be leveraged to support constant visibility on multiple levels of granularity and can be consumed by corresponding functions.</p>
+<p id="rfc.section.4.p.2">Three basic domains about the monitoring of information originating from a system entity <a href="#RFC4949" class="xref">[RFC4949]</a> or a NSF are highlighted in this document.</p>
 <p></p>
 
 <ul>
-<li>Events: the most generic type of monitoring data that can be emitted by an NSF. An event is defined in <a href="#RFC3877" class="xref">[RFC3877]</a> as something that happens which may be of interest. A fault, a change in status, crossing a threshold, or an external input to the system, for example. In the context of the I2NSF IMM, an event is a representation of a change of state, configuration, or composition of an NSF or an entity (e.g. an endpoint) or an activity (e.g. a PDU flow) that can be observed by the NSF and can be interpreted as a change of state or behavior by the NSF. An event can be created without the use of an I2NSF Condition (declarative guidance) available to the NSF. In the context of I2NSF, in some cases an event can trigger low level I2NSF actions (which constitutes an implicit escalation to alert via primate assessment).</li>
-<li>Alert: an event that is annotated with a criticality assessment due to non-compliance with I2NSF conditions (declarative guidance) available to an I2NSF Consumer via I2NSF Actions. The Intrusion Detection Message Exchange Format <a href="#RFC4765" class="xref">[RFC4765]</a> defines a representation that systems can use to report alerts about events that they deem suspicious and also associates a severity (an estimate of the relative severity of the event) with the corresponding alert. In the context of the I2NSF IMM, an alert is derived from events that express changes indicating not to conform with declarative guidance (e.g. an exceeded threshold of a value or a pattern or signature found in a PDU stream  typically an I2NSF condition) or due to imperative guidance (e.g. correlation rules applied to streams of multiple events over time or a black-list content of an event matches  typically an I2NSF Policy Rule). An alert is created by an I2NSF Producer with respect to I2NSF conditions (declarative guidance) or imperative guidance available to the I2NSF Producer. An alert does not indicate an immediate impact on operations and are not time-sensitive (but can be escalated to an alarm nevertheless due to persistence via an I2NSF Policy Rule).</li>
-<li>Alarms: an alarm that is annotated with the assertion of: 1.) having immediate impact on operations, or 2.) a persistence that in non-compliant in respect to I2NSF conditions (declarative guidance), or 3.) a correlation result produced by a I2NSF Service in respect to the result of I2NSF Policy Rules that process alerts. Alarms are time-sensitive and must be reported to the security admin as soon as possible. By processing alarms, the administrator can rapidly locate the root-cause of faults and rapidly deal with the faults to ensure normal operation of the NSFs and avoid NSFs going into unknown state or potentially exposing security vulnerabilities. An analyst can manage the NSF with via I2NSF Policy Rules. The intend of alarms is to highlight only critical information and to avoid continuous combing through large amount alerts (or even events) by analysts.</li>
+<li>Retention and Emission</li>
+<li>Notifications and Events</li>
+<li>Unsolicited Poll and Solicited Push</li>
 </ul>
-<p id="rfc.section.4.p.4">Retained Data:</p>
-<p></p>
-
-<ul>
-<li>Logs: Logs are information generated by NSF about its operational and informational data, or various events such as user activities, network/traffic status and network activity, etc. Logs are important for debugging, auditing and security forensic. Unlike events, logs do not require an immediate attention from an analyst but may be useful for visibility and retroactive cyber forensic. Hence, logs usually include less structures but potentially more detailed information in regard to events. For example, the NSF could generate a log when due to an I2NSF Policy Rule. Logs can be continuously processed by I2NSF Agent that act as I2NSF Producer and emit events via function specifically tailored to a type of log.</li>
-<li>Counters: A specific representation of identical state changes that potentially occur in high frequency. Examples include network interface counters (packets, bytes), drop, error counters etc.  Counters are useful in debugging and visibility into operational behavior of the NSF. An I2NSF Agent that observes the progress of counters can act as an I2NSF Producer and emit Events in respect to I2NSF Policy Rules.</li>
-</ul>
-<h1 id="rfc.section.5">
-<a href="#rfc.section.5">5.</a> <a href="#exporting-nsf-monitoring-data" id="exporting-nsf-monitoring-data">Exporting NSF Monitoring Data</a>
+<p id="rfc.section.4.p.4">The Alarm Management Framework in <a href="#RFC3877" class="xref">[RFC3877]</a> defines an Event as &#8220;something that happens which may be of interest.  A fault, a change in status, crossing a threshold, or an external input to the system, for example.&#8221; In the I2NSF domain, I2NSF events <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a> are created and the scope of the Alarm Management Framework Events is still applicable due to its broad definition. The model presented in this document elaborates on the work-flow of creating I2NSF events in the context of NSF monitoring and on how initial I2NSF events are created.</p>
+<p id="rfc.section.4.p.5">As with I2NSF components, every generic system entity can include a set of capabilities <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a> that creates information about the context, composition, configuration, state or behavior of that system entity. This information is intended to be provided to other consumers of informations&#8212;and in the scope of this document, to monitor that information in an automated fashion.</p>
+<h1 id="rfc.section.4.1">
+<a href="#rfc.section.4.1">4.1.</a> <a href="#emission-and-retention" id="emission-and-retention">Emission and Retention</a>
 </h1>
-<p id="rfc.section.5.p.1">As per the use cases of NSF monitoring data, the data need to be sent to various consumers based on the needs and requirements. There are multiple things to be considered for exporting this data to needed parties as listed below:</p>
+<p id="rfc.section.4.1.p.1">Typically, a system entity populates standardized interface, such as SNMP, NETCONF, RESTCONF or CoMI to provide and emit created information directly via Client-Facing Interfaces <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a>. Alternatively, the created information is retained inside the system entity (or hierarchy of system entities in a composite device) via records or counters that are not exposed directly via Client-Facing Interfaces.</p>
+<p id="rfc.section.4.1.p.2">Information emitted via standardized interfaces can be consumed by an I2NSF Agent <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a> including the capability to consume information not only via I2NSF interfaces but also via interfaces complementary to the standardized interfaces a generic system entity provides.</p>
+<p id="rfc.section.4.1.p.3">Information retained on a system entity requires a corresponding I2NSF Agent to access aggregated records of information, typically in the form of logfiles or databases. There are ways to aggregate records originating from different system entities over a network, for examples via <a href="#RFC5424" class="xref">[RFC5424]</a> or <a href="#RFC6587" class="xref">[RFC6587]</a>. But even if records are conveyed, the result is the same kind retention in form of a bigger aggregate of records on another system entity.</p>
+<p id="rfc.section.4.1.p.4">An I2NSF agent is required to process freshly <a href="#RFC4949" class="xref">[RFC4949]</a> created records via I2NSF functions to provide them to other I2NSF components via corresponding I2NSF interfaces. This process is effectively based on homogenizing functions that can access and convert specific kinds of records into information that can be provided and emitted via I2NSF interfaces.</p>
+<p id="rfc.section.4.1.p.5">Retained or emitted, the information required to support monitoring processes has to be processed by an I2NSF agent at some point in the work-flow. Typical locations of that I2NSF agents are:</p>
 <p></p>
 
 <ul>
-<li>Pull-Push model: A set of data could be pushed by a NSF to the needed party or pulled by the needed party from a NSF. A specific data might need both the models at the same time if there are multiple consumers with varying requirements. It really depends upon the need and its usages to the consumer. In general, any alarm is considered to be of great importance and must be sent immediately for any meaningful action so it should be sent using push model but logs are not as critical so could be pulled by the consumer. The I2NSF does not mandate a specific scheme for each data set, it is up to each implementation.</li>
-<li>Export frequency: The monitoring data could be sent immediately upon generation by a NSF to interested parties or pushed periodically. The frequency of exporting the data depends upon its size and timely usefulness. It is out of the scope of I2NSF and left to each NSF implementation.</li>
-<li>Authentication: There may be a need for authentication between monitoring data producer (NSF) and consumer to ensure that critical information does not fall into wrong hands. This may be necessary if the NSF directly export data to the consumer outside its admin boundary. The I2NSF does not mandate when and how specific authentication must be done.</li>
-<li>Subscription method: In order for the consumer to pull the data from NSF or for NSF to push the data to a consumer, there must be a mechanism for consumer to subscribe to the NSF data it is interested in. There are few open source method available and it is up to each implementation to decide the right one.</li>
-<li>Data transfer mode: The data could be pushed by NSF using a connection-less model that does require a persistent connection or streamed over a persistent connection. It depends upon the requirement of the consumer and the nature of data. A particular set of data can use either or both the mode based on implementation.</li>
-<li>Transport method: There are lot of transport mechanism such as IP, UDP, TCP. There are also open source implementations for specific set of data such as systems counter. The I2NSF does not mandate any specific method for a given data set, it is up to each implementation.</li>
+<li>a system entity that creates the information</li>
+<li>a system entity that retains an aggregation of records</li>
+<li>an I2NSF component that includes the capabilities of using standardized interfaces provided by other system entities that are not I2NSF components</li>
+<li>an I2NSF component that creates the information</li>
+</ul>
+<h1 id="rfc.section.4.2">
+<a href="#rfc.section.4.2">4.2.</a> <a href="#notifications-and-events" id="notifications-and-events">Notifications and Events</a>
+</h1>
+<p id="rfc.section.4.2.p.1">A specific task of I2NSF agents is to process I2NSF Policy Rules <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a>. Rules are composed of three boolean clauses: Events, Conditions, and Actions. In consequence, an I2NSF event is required to trigger an I2NSF Policy Rule. &#8220;An I2NSF Event is defined as any important occurrence in time of a change in the system being managed, and/or in the environment of the system being managed.&#8221; <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a>, which aligns well with the generic definition of Event from <a href="#RFC3877" class="xref">[RFC3877]</a>.</p>
+<p></p>
+
+<dl>
+<dt>The model illustrated in this document introduces a complementary type of</dt>
+<dd style="margin-left: 8"></dd>
+<dt>information that can be conveyed&#8212; a Notification:</dt>
+<dd style="margin-left: 8">An occurrence of a change of context, composition, configuration, state or behavior of a system entity that can be directly or indirectly observed by an I2NSF agent and can be used as input for an event-clause in I2NSF Policy Rules.</dd>
+<dt></dt>
+<dd style="margin-left: 8">A notification is similar to an I2NSF event with the exception that it is not created by an I2NSF component and that its importances is yet to be assessed.  Notifications therefore can contain information with very low expressiveness or relevance. In consequence, additional post-processing functions, such as aggregation, correlation or simple anomaly detection, might have to be employed to satisfy a level of expressiveness that is required for an event-clause of an I2NSF Policy Rule.</dd>
+</dl>
+<p id="rfc.section.4.2.p.3">It is important to note that the consumer of a notification (the observer) assesses the importance of a notification and not the producer. The producer can include metadata in a notification that supports the observer in assessing the importance, but the deciding entity is an I2NSF agent.</p>
+<h1 id="rfc.section.4.3">
+<a href="#rfc.section.4.3">4.3.</a> <a href="#unsolicited-poll-and-solicited-push" id="unsolicited-poll-and-solicited-push">Unsolicited Poll and Solicited Push</a>
+</h1>
+<p id="rfc.section.4.3.p.1">The freshness of the monitored information depends on the acquisition method.  Ideally, an I2NSF agent is accessing every relevant information about the I2NSF component and is emitting I2NSF events to a monitoring NSF. Publication of events via a pubsub/broker model peer-2-peer meshes, or static defined channels are only a few examples on how a solicited push of I2NSF events can be facilitated. The actual mechanic implemented by an I2NSF component is out of the scope of this document.</p>
+<p id="rfc.section.4.3.p.2">Often, corresponding management interfaces have to be queried in intervals or on-demand if required by an I2NSF Policy rule. In some cases a collection of information has to be conducted via a login mechanics provided by a system entity. Accessing records of information via this kind of unsolicited polls can introduce a significant latency in regard to the freshness of the monitored information. The actual definition of intervals implemented by an I2NSF component is also out of scope of this document.</p>
+<h1 id="rfc.section.4.4">
+<a href="#rfc.section.4.4">4.4.</a> <a href="#i2nsf-monitoring-terminology-for-retained-information" id="i2nsf-monitoring-terminology-for-retained-information">I2NSF Monitoring Terminology for Retained Information</a>
+</h1>
+<p></p>
+
+<dl>
+<dt>Records:</dt>
+<dd style="margin-left: 8">Unlike information emitted via notifications and events, records do not require immediate attention from an analyst but may be useful for visibility and retroactive cyber forensic. Depending on the record format, there different qualities in regard to structure and detail. Records are typically stored in logfiles or databases on a system entity or NSF.  Records in the form of logfiles usually include less structures but potentially more detailed information in regard to changes of an system entity&#8217;s characteristics. In contrast, databases often use more strict schemas or data models, therefore enforcing a better structure, but inhibit storing information that do not match those models (&#8216;closed world assumpstion&#8217;). Records can be continuously processed by I2NSF Agents that act as I2NSF Producer and emit events via functions specifically tailored to a certain type of record.  Typically, records are information generated by NSF about their operational and informational data, or various system changes such as user activities, network/traffic status and network activity, etc. They are important for debugging, auditing and security forensic.</dd>
+<dt>Counters:</dt>
+<dd style="margin-left: 8">A specific representation of identical state changes that potentially occur in high frequency. Examples include network interface counters (e.g. PDU amount or bytes), drop, error counters etc. Counters are useful in debugging and visibility into operational behavior of the NSF. An I2NSF Agent that observes the progress of counters can act as an I2NSF Producer and raw notifications or emit events in respect to I2NSF Policy Rules.</dd>
+</dl>
+<h1 id="rfc.section.5">
+<a href="#rfc.section.5">5.</a> <a href="#conveyance-of-nsf-monitoring-information" id="conveyance-of-nsf-monitoring-information">Conveyance of NSF Monitoring Information</a>
+</h1>
+<p id="rfc.section.5.p.1">As per the use cases of NSF monitoring data, information needs to be conveyed to various I2NSF consumers based on requirements imposed by I2NSF capabilities and work-flows. There are multiple aspects to be considered in regard to emission of monitoring information to requesting parties as listed below:</p>
+<p></p>
+
+<ul>
+<li>Pull-Push Model: A set of data could be pushed by a NSF to the requesting party or pulled by the requesting party from a NSF. Specific types of information might need both the models at the same time if there are multiple I2NSF Consumers with varying requirements. In general, any event including a high criticality assessment is considered to be of great importance and should be processed as soon as possible (push-model). Records, in contrast, are typically not as critical (pull-model). The I2NSF architecture does not mandate a specific scheme for each type of information and is therefore out of scope of this document.</li>
+<li>Pub-Sub Model: In order for an I2NSF provider to push monitoring information to multiple appropriate I2NSF Consumers, a subscription can be maintained by both I2NSF components. Discovery of available monitoring information can be supported by an I2NSF Controller that takes on the role of a broker and therefore I2NSF Capabilities are registered at.</li>
+<li>Export Frequency: Monitoring information can be emitted immediately upon generation by a NSF to requesting I2NSF Consumers or can be  pushed periodically. The frequency of exporting the data depends upon its size and timely usefulness. It is out of the scope of I2NSF and left to each NSF implementation.</li>
+<li>Authentication: There may be a need for authentication between I2NSF Producer of monitoring information and corresponding I2NSF Consumer to ensure that critical information remains confidential. Authentication in the scope of I2NSF can therefore require a corresponding content authorization.  This may be necessary if a NSF emits monitoring information to I2NSF consumer outside its administrative domain. The I2NSF architecture does not mandate when and how specific authentication has to be implemented.</li>
+<li>Data-Transfer Model: Monitoring information can be pushed by NSF using a connection-less model that does require a persistent connection or streamed over a persistent connection. An appropriate model depends on the I2NSF consumer requirements and the semantics of the information to be conveyed.</li>
+<li>Data Model for Data in Motion: There are lot of transport mechanism such as IP, UDP, TCP. There are also open source implementations for specific set of data such as systems counter. The I2NSF does not mandate any specific method for a given data set, it is up to each implementation.</li>
 </ul>
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#basic-information-model-for-all-monitoring-data" id="basic-information-model-for-all-monitoring-data">Basic Information Model for All Monitoring Data</a>
@@ -1116,6 +1170,21 @@ address {
 <td class="reference"><b id="RFC4765">[RFC4765]</b></td>
 <td class="top">
 <a>Debar, H.</a>, <a>Curry, D.</a> and <a>B. Feinstein</a>, "<a href="http://tools.ietf.org/html/rfc4765">The Intrusion Detection Message Exchange Format (IDMEF)</a>", RFC 4765, DOI 10.17487/RFC4765, March 2007.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4949">[RFC4949]</b></td>
+<td class="top">
+<a>Shirey, R.</a>, "<a href="http://tools.ietf.org/html/rfc4949">Internet Security Glossary, Version 2</a>", FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5424">[RFC5424]</b></td>
+<td class="top">
+<a>Gerhards, R.</a>, "<a href="http://tools.ietf.org/html/rfc5424">The Syslog Protocol</a>", RFC 5424, DOI 10.17487/RFC5424, March 2009.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6587">[RFC6587]</b></td>
+<td class="top">
+<a>Gerhards, R.</a> and <a>C. Lonvick</a>, "<a href="http://tools.ietf.org/html/rfc6587">Transmission of Syslog Messages over TCP</a>", RFC 6587, DOI 10.17487/RFC6587, April 2012.</td>
 </tr>
 </tbody></table>
 <h1 id="rfc.references.2">

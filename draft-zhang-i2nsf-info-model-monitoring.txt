@@ -24,7 +24,7 @@ Abstract
    The Network Security Functions (NSF) NSF-facing interface exists
    between the Service Provider's management system (or Security
    Controller) and the NSFs to enforce the security policy provisioning
-   and network security status monitoring . This document focuses on the
+   and network security status monitoring.  This document focuses on the
    monitoring part of it and proposes the information model for it.
 
 Status of This Memo
@@ -71,41 +71,41 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
-   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.1.  Key Words . . . . . . . . . . . . . . . . . . . . . . . .   3
+   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.1.  Key Words . . . . . . . . . . . . . . . . . . . . . . . .   4
      2.2.  Definition of Terms . . . . . . . . . . . . . . . . . . .   4
    3.  Use cases for NSF Monitoring Data . . . . . . . . . . . . . .   4
    4.  Classification of NSF Monitoring Data . . . . . . . . . . . .   4
-   5.  Exporting NSF Monitoring Data . . . . . . . . . . . . . . . .   6
-   6.  Basic Information Model for All Monitoring Data . . . . . . .   7
-   7.  Extended Information Model for Monitoring Data  . . . . . . .   8
-     7.1.  System Alarm  . . . . . . . . . . . . . . . . . . . . . .   8
-       7.1.1.  Memory Alarm  . . . . . . . . . . . . . . . . . . . .   8
-       7.1.2.  CPU Alarm . . . . . . . . . . . . . . . . . . . . . .   9
-       7.1.3.  Disk Alarm  . . . . . . . . . . . . . . . . . . . . .   9
-       7.1.4.  Hardware Alarm  . . . . . . . . . . . . . . . . . . .   9
-       7.1.5.  Interface Alarm . . . . . . . . . . . . . . . . . . .  10
-     7.2.  System Events . . . . . . . . . . . . . . . . . . . . . .  10
-       7.2.1.  Access Violation  . . . . . . . . . . . . . . . . . .  10
-       7.2.2.  Configuration Change  . . . . . . . . . . . . . . . .  10
-     7.3.  System Log  . . . . . . . . . . . . . . . . . . . . . . .  11
-       7.3.1.  Access Logs . . . . . . . . . . . . . . . . . . . . .  11
-       7.3.2.  Resource Utilization Logs . . . . . . . . . . . . . .  11
-       7.3.3.  User Activity Logs  . . . . . . . . . . . . . . . . .  12
-     7.4.  System Counters . . . . . . . . . . . . . . . . . . . . .  12
-       7.4.1.  Interface counters  . . . . . . . . . . . . . . . . .  12
-     7.5.  NSF Events  . . . . . . . . . . . . . . . . . . . . . . .  13
-       7.5.1.  DDoS Event  . . . . . . . . . . . . . . . . . . . . .  13
-       7.5.2.  Session Table Event . . . . . . . . . . . . . . . . .  14
-       7.5.3.  Virus Event . . . . . . . . . . . . . . . . . . . . .  14
-       7.5.4.  Intrusion Event . . . . . . . . . . . . . . . . . . .  15
-       7.5.5.  Botnet Event  . . . . . . . . . . . . . . . . . . . .  16
-       7.5.6.  Web Attack Event  . . . . . . . . . . . . . . . . . .  17
-     7.6.  NSF Logs  . . . . . . . . . . . . . . . . . . . . . . . .  18
-       7.6.1.  DDoS Logs . . . . . . . . . . . . . . . . . . . . . .  18
-       7.6.2.  Virus Logs  . . . . . . . . . . . . . . . . . . . . .  18
-       7.6.3.  Intrusion Logs  . . . . . . . . . . . . . . . . . . .  19
-       7.6.4.  Botnet Logs . . . . . . . . . . . . . . . . . . . . .  19
+     4.1.  Emission and Retention  . . . . . . . . . . . . . . . . .   5
+     4.2.  Notifications and Events  . . . . . . . . . . . . . . . .   6
+     4.3.  Unsolicited Poll and Solicited Push . . . . . . . . . . .   7
+     4.4.  I2NSF Monitoring Terminology for Retained Information . .   7
+   5.  Conveyance of NSF Monitoring Information  . . . . . . . . . .   8
+   6.  Basic Information Model for All Monitoring Data . . . . . . .   9
+   7.  Extended Information Model for Monitoring Data  . . . . . . .  10
+     7.1.  System Alarm  . . . . . . . . . . . . . . . . . . . . . .  10
+       7.1.1.  Memory Alarm  . . . . . . . . . . . . . . . . . . . .  10
+       7.1.2.  CPU Alarm . . . . . . . . . . . . . . . . . . . . . .  10
+       7.1.3.  Disk Alarm  . . . . . . . . . . . . . . . . . . . . .  11
+       7.1.4.  Hardware Alarm  . . . . . . . . . . . . . . . . . . .  11
+       7.1.5.  Interface Alarm . . . . . . . . . . . . . . . . . . .  11
+     7.2.  System Events . . . . . . . . . . . . . . . . . . . . . .  12
+       7.2.1.  Access Violation  . . . . . . . . . . . . . . . . . .  12
+       7.2.2.  Configuration Change  . . . . . . . . . . . . . . . .  12
+     7.3.  System Log  . . . . . . . . . . . . . . . . . . . . . . .  12
+       7.3.1.  Access Logs . . . . . . . . . . . . . . . . . . . . .  12
+       7.3.2.  Resource Utilization Logs . . . . . . . . . . . . . .  13
+       7.3.3.  User Activity Logs  . . . . . . . . . . . . . . . . .  13
+     7.4.  System Counters . . . . . . . . . . . . . . . . . . . . .  14
+       7.4.1.  Interface counters  . . . . . . . . . . . . . . . . .  14
+     7.5.  NSF Events  . . . . . . . . . . . . . . . . . . . . . . .  15
+       7.5.1.  DDoS Event  . . . . . . . . . . . . . . . . . . . . .  15
+       7.5.2.  Session Table Event . . . . . . . . . . . . . . . . .  16
+       7.5.3.  Virus Event . . . . . . . . . . . . . . . . . . . . .  16
+       7.5.4.  Intrusion Event . . . . . . . . . . . . . . . . . . .  17
+       7.5.5.  Botnet Event  . . . . . . . . . . . . . . . . . . . .  18
+       7.5.6.  Web Attack Event  . . . . . . . . . . . . . . . . . .  19
+     7.6.  NSF Logs  . . . . . . . . . . . . . . . . . . . . . . . .  19
 
 
 
@@ -114,50 +114,50 @@ Xia, et al.            Expires September 14, 2017               [Page 2]
 Internet-Draft            IM for NSF Monitoring               March 2017
 
 
-       7.6.5.  DPI Logs  . . . . . . . . . . . . . . . . . . . . . .  19
-       7.6.6.  Vulnerabillity Scanning Logs  . . . . . . . . . . . .  20
-       7.6.7.  Web Attack Logs . . . . . . . . . . . . . . . . . . .  21
-     7.7.  NSF Counters  . . . . . . . . . . . . . . . . . . . . . .  21
-       7.7.1.  Firewall counters . . . . . . . . . . . . . . . . . .  21
-       7.7.2.  Policy Hit Counters . . . . . . . . . . . . . . . . .  22
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  23
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  23
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  24
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .  24
-     10.2.  Informative References . . . . . . . . . . . . . . . . .  24
-   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  25
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  25
+       7.6.1.  DDoS Logs . . . . . . . . . . . . . . . . . . . . . .  19
+       7.6.2.  Virus Logs  . . . . . . . . . . . . . . . . . . . . .  20
+       7.6.3.  Intrusion Logs  . . . . . . . . . . . . . . . . . . .  20
+       7.6.4.  Botnet Logs . . . . . . . . . . . . . . . . . . . . .  21
+       7.6.5.  DPI Logs  . . . . . . . . . . . . . . . . . . . . . .  21
+       7.6.6.  Vulnerabillity Scanning Logs  . . . . . . . . . . . .  22
+       7.6.7.  Web Attack Logs . . . . . . . . . . . . . . . . . . .  22
+     7.7.  NSF Counters  . . . . . . . . . . . . . . . . . . . . . .  23
+       7.7.1.  Firewall counters . . . . . . . . . . . . . . . . . .  23
+       7.7.2.  Policy Hit Counters . . . . . . . . . . . . . . . . .  24
+   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  25
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  25
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  25
+     10.1.  Normative References . . . . . . . . . . . . . . . . . .  25
+     10.2.  Informative References . . . . . . . . . . . . . . . . .  26
+   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  26
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  26
 
 1.  Introduction
 
    According to [I-D.ietf-i2nsf-framework], the interface provided by a
-   NSF (e.g., FW, IPS, Anti-DDOS, or Anti-Virus) to administrative
-   entities (e.g., NMS, security controller) for configuring security
-   function in the NSF and monitoring the NSF is referred to as a 'I2NSF
-   customer-facing interface'.  The monitoring part of it is meant to
-   monitor the NSF e.g. events, alerts, alarms, logs, counters.  The
-   monitoring of the NSF plays a very important role in the overall
-   security framework if done in a timely and comprehensive way.  The
-   monitoring information generated by a NSF could very well be an early
-   indication of malicious activity, or anomalous behavior, or a
-   potential sign of denial of service attacks.
+   NSF (e.g., FW, IPS, Anti-DDOS, or Anti-Virus function) to
+   administrative entities (e.g., NMS, security controller) for
+   configuring security function in the NSF and monitoring the NSF is
+   referred to as a 'I2NSF customer-facing interface'.  The monitoring
+   part of it is meant to acquire vital information about the NSF via,
+   e.g. notifications, events, records, counters.  The monitoring of the
+   NSF plays a very important role in the overall security framework if
+   done in a timely and comprehensive way.  The monitoring information
+   generated by a NSF could very well be an early indication of
+   malicious activity, or anomalous behavior, or a potential sign of
+   denial of service attacks.
 
    This draft proposes a comprehensive NSF monitoring information model
-   that provide visibility into NSFs.  This document will not go into
-   the design details of NSF-facing interface.  Instead, this draft is
-   focused on specifying the information that a NSF needs to provide in
-   the monitoring part of the NSF-facing interface, as well as its
-   information model.  Besides, [I-D.xibassnez-i2nsf-capability]
-   specifies the information model for the security policy provisioning
-   part of the NSF-facing interface.
+   that provides visibility into NSFs.  This document will not go into
+   the design details of NSF-facing interfaces.  Instead, this draft is
+   focused on specifying the information and illustrates the methods
+   that enable a NSF to provide the information required in order to be
+   monitored in a scaleable and efficient way via the NSF-facing
+   interface.  The information model for monitoring presented in this
+   document is a complement to the information model for the security
+   policy provisioning part of the NSF-facing interface specified in
+   [I-D.xibassnez-i2nsf-capability].
 
-2.  Terminology
-
-2.1.  Key Words
-
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-   document are to be interpreted as described in [RFC2119].
 
 
 
@@ -169,6 +169,14 @@ Xia, et al.            Expires September 14, 2017               [Page 3]
 
 Internet-Draft            IM for NSF Monitoring               March 2017
 
+
+2.  Terminology
+
+2.1.  Key Words
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in [RFC2119].
 
 2.2.  Definition of Terms
 
@@ -209,15 +217,7 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    In order to maintain a strong security posture, it is not only
    necessary to configure NSF security policies but also to continuously
-   monitor NSF by consuming acquirable monitoring data.  This enables
-   security admins to assess what is happening in the network timely.
-   It is not possible to block all the internal and external threats
-   based on static security posture but requires a very dynamic posture
-   with constant visibility.  This draft defines a set of information
-   elements (and their scope) that can be acquired from NSF and can be
-   used as monitoring data.  In essence, these types of monitoring data
-   can be leveraged to support constant visibility on multiple levels of
-   granularity and can be consumed by corresponding functions.  The
+   monitor NSF by consuming acquirable observable information.  This
 
 
 
@@ -226,54 +226,54 @@ Xia, et al.            Expires September 14, 2017               [Page 4]
 Internet-Draft            IM for NSF Monitoring               March 2017
 
 
-   types of monitoring data as ordered below increase in expressiveness
-   by incorporating more information to the semantics of the monitoring
-   data.  There are two categories of monitoring data.  Information that
-   is produced and emitted by an NSF automatically (published data) and
-   information that is produced and retained by the NSF and has to be
-   collected in intervals (retained data):
+   enables security admins to assess what is happening in the network
+   timely.  It is not possible to block all the internal and external
+   threats based on static security posture.  To achieve this goal, a
+   very dynamic posture with constant visibility is required.  This
+   draft defines a set of information elements (and their scope) that
+   can be acquired from NSF and can be used as monitoring information.
+   In essence, these types of monitoring information can be leveraged to
+   support constant visibility on multiple levels of granularity and can
+   be consumed by corresponding functions.
 
-   Published Data:
+   Three basic domains about the monitoring of information originating
+   from a system entity [RFC4949] or a NSF are highlighted in this
+   document.
 
-   o  Events: the most generic type of monitoring data that can be
-      emitted by an NSF.  An event is defined in [RFC3877] as something
-      that happens which may be of interest.  A fault, a change in
-      status, crossing a threshold, or an external input to the system,
-      for example.  In the context of the I2NSF IMM, an event is a
-      representation of a change of state, configuration, or composition
-      of an NSF or an entity (e.g. an endpoint) or an activity (e.g. a
-      PDU flow) that can be observed by the NSF and can be interpreted
-      as a change of state or behavior by the NSF.  An event can be
-      created without the use of an I2NSF Condition (declarative
-      guidance) available to the NSF.  In the context of I2NSF, in some
-      cases an event can trigger low level I2NSF actions (which
-      constitutes an implicit escalation to alert via primate
-      assessment).
+   o  Retention and Emission
 
-   o  Alert: an event that is annotated with a criticality assessment
-      due to non-compliance with I2NSF conditions (declarative guidance)
-      available to an I2NSF Consumer via I2NSF Actions.  The Intrusion
-      Detection Message Exchange Format [RFC4765] defines a
-      representation that systems can use to report alerts about events
-      that they deem suspicious and also associates a severity (an
-      estimate of the relative severity of the event) with the
-      corresponding alert.  In the context of the I2NSF IMM, an alert is
-      derived from events that express changes indicating not to conform
-      with declarative guidance (e.g. an exceeded threshold of a value
-      or a pattern or signature found in a PDU stream typically an I2NSF
-      condition) or due to imperative guidance (e.g. correlation rules
-      applied to streams of multiple events over time or a black-list
-      content of an event matches typically an I2NSF Policy Rule).  An
-      alert is created by an I2NSF Producer with respect to I2NSF
-      conditions (declarative guidance) or imperative guidance available
-      to the I2NSF Producer.  An alert does not indicate an immediate
-      impact on operations and are not time-sensitive (but can be
-      escalated to an alarm nevertheless due to persistence via an I2NSF
-      Policy Rule).
+   o  Notifications and Events
 
-   o  Alarms: an alarm that is annotated with the assertion of: 1.)
-      having immediate impact on operations, or 2.) a persistence that
-      in non-compliant in respect to I2NSF conditions (declarative
+   o  Unsolicited Poll and Solicited Push
+
+   The Alarm Management Framework in [RFC3877] defines an Event as
+   "something that happens which may be of interest.  A fault, a change
+   in status, crossing a threshold, or an external input to the system,
+   for example."  In the I2NSF domain, I2NSF events
+   [I-D.ietf-i2nsf-terminology] are created and the scope of the Alarm
+   Management Framework Events is still applicable due to its broad
+   definition.  The model presented in this document elaborates on the
+   work-flow of creating I2NSF events in the context of NSF monitoring
+   and on how initial I2NSF events are created.
+
+   As with I2NSF components, every generic system entity can include a
+   set of capabilities [I-D.ietf-i2nsf-terminology] that creates
+   information about the context, composition, configuration, state or
+   behavior of that system entity.  This information is intended to be
+   provided to other consumers of informations--and in the scope of this
+   document, to monitor that information in an automated fashion.
+
+4.1.  Emission and Retention
+
+   Typically, a system entity populates standardized interface, such as
+   SNMP, NETCONF, RESTCONF or CoMI to provide and emit created
+   information directly via Client-Facing Interfaces
+   [I-D.ietf-i2nsf-terminology].  Alternatively, the created information
+   is retained inside the system entity (or hierarchy of system entities
+   in a composite device) via records or counters that are not exposed
+   directly via Client-Facing Interfaces.
+
+
 
 
 
@@ -282,54 +282,54 @@ Xia, et al.            Expires September 14, 2017               [Page 5]
 Internet-Draft            IM for NSF Monitoring               March 2017
 
 
-      guidance), or 3.) a correlation result produced by a I2NSF Service
-      in respect to the result of I2NSF Policy Rules that process
-      alerts.  Alarms are time-sensitive and must be reported to the
-      security admin as soon as possible.  By processing alarms, the
-      administrator can rapidly locate the root-cause of faults and
-      rapidly deal with the faults to ensure normal operation of the
-      NSFs and avoid NSFs going into unknown state or potentially
-      exposing security vulnerabilities.  An analyst can manage the NSF
-      with via I2NSF Policy Rules.  The intend of alarms is to highlight
-      only critical information and to avoid continuous combing through
-      large amount alerts (or even events) by analysts.
+   Information emitted via standardized interfaces can be consumed by an
+   I2NSF Agent [I-D.ietf-i2nsf-terminology] including the capability to
+   consume information not only via I2NSF interfaces but also via
+   interfaces complementary to the standardized interfaces a generic
+   system entity provides.
 
-   Retained Data:
+   Information retained on a system entity requires a corresponding
+   I2NSF Agent to access aggregated records of information, typically in
+   the form of logfiles or databases.  There are ways to aggregate
+   records originating from different system entities over a network,
+   for examples via [RFC5424] or [RFC6587].  But even if records are
+   conveyed, the result is the same kind retention in form of a bigger
+   aggregate of records on another system entity.
 
-   o  Logs: Logs are information generated by NSF about its operational
-      and informational data, or various events such as user activities,
-      network/traffic status and network activity, etc.  Logs are
-      important for debugging, auditing and security forensic.  Unlike
-      events, logs do not require an immediate attention from an analyst
-      but may be useful for visibility and retroactive cyber forensic.
-      Hence, logs usually include less structures but potentially more
-      detailed information in regard to events.  For example, the NSF
-      could generate a log when due to an I2NSF Policy Rule.  Logs can
-      be continuously processed by I2NSF Agent that act as I2NSF
-      Producer and emit events via function specifically tailored to a
-      type of log.
+   An I2NSF agent is required to process freshly [RFC4949] created
+   records via I2NSF functions to provide them to other I2NSF components
+   via corresponding I2NSF interfaces.  This process is effectively
+   based on homogenizing functions that can access and convert specific
+   kinds of records into information that can be provided and emitted
+   via I2NSF interfaces.
 
-   o  Counters: A specific representation of identical state changes
-      that potentially occur in high frequency.  Examples include
-      network interface counters (packets, bytes), drop, error counters
-      etc.  Counters are useful in debugging and visibility into
-      operational behavior of the NSF.  An I2NSF Agent that observes the
-      progress of counters can act as an I2NSF Producer and emit Events
-      in respect to I2NSF Policy Rules.
+   Retained or emitted, the information required to support monitoring
+   processes has to be processed by an I2NSF agent at some point in the
+   work-flow.  Typical locations of that I2NSF agents are:
 
-5.  Exporting NSF Monitoring Data
+   o  a system entity that creates the information
 
-   As per the use cases of NSF monitoring data, the data need to be sent
-   to various consumers based on the needs and requirements.  There are
-   multiple things to be considered for exporting this data to needed
-   parties as listed below:
+   o  a system entity that retains an aggregation of records
 
-   o  Pull-Push model: A set of data could be pushed by a NSF to the
-      needed party or pulled by the needed party from a NSF.  A specific
-      data might need both the models at the same time if there are
-      multiple consumers with varying requirements.  It really depends
-      upon the need and its usages to the consumer.  In general, any
-      alarm is considered to be of great importance and must be sent
+   o  an I2NSF component that includes the capabilities of using
+      standardized interfaces provided by other system entities that are
+      not I2NSF components
+
+   o  an I2NSF component that creates the information
+
+4.2.  Notifications and Events
+
+   A specific task of I2NSF agents is to process I2NSF Policy Rules
+   [I-D.ietf-i2nsf-terminology].  Rules are composed of three boolean
+   clauses: Events, Conditions, and Actions.  In consequence, an I2NSF
+   event is required to trigger an I2NSF Policy Rule.  "An I2NSF Event
+   is defined as any important occurrence in time of a change in the
+   system being managed, and/or in the environment of the system being
+   managed."  [I-D.ietf-i2nsf-terminology], which aligns well with the
+   generic definition of Event from [RFC3877].
+
+   The model illustrated in this document introduces a complementary
+   type of
 
 
 
@@ -338,42 +338,144 @@ Xia, et al.            Expires September 14, 2017               [Page 6]
 Internet-Draft            IM for NSF Monitoring               March 2017
 
 
-      immediately for any meaningful action so it should be sent using
-      push model but logs are not as critical so could be pulled by the
-      consumer.  The I2NSF does not mandate a specific scheme for each
-      data set, it is up to each implementation.
+   information that can be conveyed-- a Notification:  An occurrence of
+      a change of context, composition, configuration, state or behavior
+      of a system entity that can be directly or indirectly observed by
+      an I2NSF agent and can be used as input for an event-clause in
+      I2NSF Policy Rules.
 
-   o  Export frequency: The monitoring data could be sent immediately
-      upon generation by a NSF to interested parties or pushed
-      periodically.  The frequency of exporting the data depends upon
-      its size and timely usefulness.  It is out of the scope of I2NSF
-      and left to each NSF implementation.
+      A notification is similar to an I2NSF event with the exception
+      that it is not created by an I2NSF component and that its
+      importances is yet to be assessed.  Notifications therefore can
+      contain information with very low expressiveness or relevance.  In
+      consequence, additional post-processing functions, such as
+      aggregation, correlation or simple anomaly detection, might have
+      to be employed to satisfy a level of expressiveness that is
+      required for an event-clause of an I2NSF Policy Rule.
+
+   It is important to note that the consumer of a notification (the
+   observer) assesses the importance of a notification and not the
+   producer.  The producer can include metadata in a notification that
+   supports the observer in assessing the importance, but the deciding
+   entity is an I2NSF agent.
+
+4.3.  Unsolicited Poll and Solicited Push
+
+   The freshness of the monitored information depends on the acquisition
+   method.  Ideally, an I2NSF agent is accessing every relevant
+   information about the I2NSF component and is emitting I2NSF events to
+   a monitoring NSF.  Publication of events via a pubsub/broker model
+   peer-2-peer meshes, or static defined channels are only a few
+   examples on how a solicited push of I2NSF events can be facilitated.
+   The actual mechanic implemented by an I2NSF component is out of the
+   scope of this document.
+
+   Often, corresponding management interfaces have to be queried in
+   intervals or on-demand if required by an I2NSF Policy rule.  In some
+   cases a collection of information has to be conducted via a login
+   mechanics provided by a system entity.  Accessing records of
+   information via this kind of unsolicited polls can introduce a
+   significant latency in regard to the freshness of the monitored
+   information.  The actual definition of intervals implemented by an
+   I2NSF component is also out of scope of this document.
+
+4.4.  I2NSF Monitoring Terminology for Retained Information
+
+   Records:  Unlike information emitted via notifications and events,
+      records do not require immediate attention from an analyst but may
+      be useful for visibility and retroactive cyber forensic.
+      Depending on the record format, there different qualities in
+      regard to structure and detail.  Records are typically stored in
+
+
+
+Xia, et al.            Expires September 14, 2017               [Page 7]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
+
+      logfiles or databases on a system entity or NSF.  Records in the
+      form of logfiles usually include less structures but potentially
+      more detailed information in regard to changes of an system
+      entity's characteristics.  In contrast, databases often use more
+      strict schemas or data models, therefore enforcing a better
+      structure, but inhibit storing information that do not match those
+      models ('closed world assumpstion').  Records can be continuously
+      processed by I2NSF Agents that act as I2NSF Producer and emit
+      events via functions specifically tailored to a certain type of
+      record.  Typically, records are information generated by NSF about
+      their operational and informational data, or various system
+      changes such as user activities, network/traffic status and
+      network activity, etc.  They are important for debugging, auditing
+      and security forensic.
+
+   Counters:  A specific representation of identical state changes that
+      potentially occur in high frequency.  Examples include network
+      interface counters (e.g.  PDU amount or bytes), drop, error
+      counters etc.  Counters are useful in debugging and visibility
+      into operational behavior of the NSF.  An I2NSF Agent that
+      observes the progress of counters can act as an I2NSF Producer and
+      raw notifications or emit events in respect to I2NSF Policy Rules.
+
+5.  Conveyance of NSF Monitoring Information
+
+   As per the use cases of NSF monitoring data, information needs to be
+   conveyed to various I2NSF consumers based on requirements imposed by
+   I2NSF capabilities and work-flows.  There are multiple aspects to be
+   considered in regard to emission of monitoring information to
+   requesting parties as listed below:
+
+   o  Pull-Push Model: A set of data could be pushed by a NSF to the
+      requesting party or pulled by the requesting party from a NSF.
+      Specific types of information might need both the models at the
+      same time if there are multiple I2NSF Consumers with varying
+      requirements.  In general, any event including a high criticality
+      assessment is considered to be of great importance and should be
+      processed as soon as possible (push-model).  Records, in contrast,
+      are typically not as critical (pull-model).  The I2NSF
+      architecture does not mandate a specific scheme for each type of
+      information and is therefore out of scope of this document.
+
+   o  Pub-Sub Model: In order for an I2NSF provider to push monitoring
+      information to multiple appropriate I2NSF Consumers, a
+      subscription can be maintained by both I2NSF components.
+      Discovery of available monitoring information can be supported by
+      an I2NSF Controller that takes on the role of a broker and
+      therefore I2NSF Capabilities are registered at.
+
+
+
+Xia, et al.            Expires September 14, 2017               [Page 8]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
+
+   o  Export Frequency: Monitoring information can be emitted
+      immediately upon generation by a NSF to requesting I2NSF Consumers
+      or can be pushed periodically.  The frequency of exporting the
+      data depends upon its size and timely usefulness.  It is out of
+      the scope of I2NSF and left to each NSF implementation.
 
    o  Authentication: There may be a need for authentication between
-      monitoring data producer (NSF) and consumer to ensure that
-      critical information does not fall into wrong hands.  This may be
-      necessary if the NSF directly export data to the consumer outside
-      its admin boundary.  The I2NSF does not mandate when and how
-      specific authentication must be done.
+      I2NSF Producer of monitoring information and corresponding I2NSF
+      Consumer to ensure that critical information remains confidential.
+      Authentication in the scope of I2NSF can therefore require a
+      corresponding content authorization.  This may be necessary if a
+      NSF emits monitoring information to I2NSF consumer outside its
+      administrative domain.  The I2NSF architecture does not mandate
+      when and how specific authentication has to be implemented.
 
-   o  Subscription method: In order for the consumer to pull the data
-      from NSF or for NSF to push the data to a consumer, there must be
-      a mechanism for consumer to subscribe to the NSF data it is
-      interested in.  There are few open source method available and it
-      is up to each implementation to decide the right one.
+   o  Data-Transfer Model: Monitoring information can be pushed by NSF
+      using a connection-less model that does require a persistent
+      connection or streamed over a persistent connection.  An
+      appropriate model depends on the I2NSF consumer requirements and
+      the semantics of the information to be conveyed.
 
-   o  Data transfer mode: The data could be pushed by NSF using a
-      connection-less model that does require a persistent connection or
-      streamed over a persistent connection.  It depends upon the
-      requirement of the consumer and the nature of data.  A particular
-      set of data can use either or both the mode based on
-      implementation.
-
-   o  Transport method: There are lot of transport mechanism such as IP,
-      UDP, TCP.  There are also open source implementations for specific
-      set of data such as systems counter.  The I2NSF does not mandate
-      any specific method for a given data set, it is up to each
-      implementation.
+   o  Data Model for Data in Motion: There are lot of transport
+      mechanism such as IP, UDP, TCP.  There are also open source
+      implementations for specific set of data such as systems counter.
+      The I2NSF does not mandate any specific method for a given data
+      set, it is up to each implementation.
 
 6.  Basic Information Model for All Monitoring Data
 
@@ -386,14 +488,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    o  message_version: Indicate the version of the data format and is a
       two-digit decimal numeral starting from 01
 
-
-
-
-Xia, et al.            Expires September 14, 2017               [Page 7]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
    o  message_type: Event, Alert, Alarm, Log, Counter, etc
 
    o  time_stamp: Indicate the time when the message is generated
@@ -403,6 +497,14 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    o  NSF_name: The name (or IP) of the NSF generating the message
 
    o  Module_name: The module name outputting the message
+
+
+
+
+Xia, et al.            Expires September 14, 2017               [Page 9]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  Severity: Indicates the level of the logs.  There are total eight
       levels, from 0 to 7.  The smaller the numeral is, the higher the
@@ -440,16 +542,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  message: 'The memory usage exceeded the threshold'
 
-
-
-
-
-
-Xia, et al.            Expires September 14, 2017               [Page 8]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
 7.1.2.  CPU Alarm
 
    The following information should be included in a CPU Alarm:
@@ -462,6 +554,13 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  severity: The severity of the alarm such as critical, high,
       medium, low
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 10]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  message: 'The CPU usage exceeded the threshold'
 
@@ -496,16 +595,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  message: 'The HW component has failed or degraded'
 
-
-
-
-
-
-Xia, et al.            Expires September 14, 2017               [Page 9]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
 7.1.5.  Interface Alarm
 
    The following information should be included in a Interface Alarm:
@@ -520,6 +609,14 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  severity: The severity of the alarm such as critical, high,
       medium, low
+
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 11]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  message: 'Current interface state'
 
@@ -555,13 +652,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  login_ip_address: Login IP address of a user
 
-
-
-Xia, et al.            Expires September 14, 2017              [Page 10]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
    o  authentication_mode: User authentication mode. e.g., Local
       Authentication, Third-Party Server Authentication, Authentication
       Exemption, SSO Authentication
@@ -576,6 +666,13 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    the device.  By analyzing them, security vulnerabilities can be
    identified.  The following information should be included in
    operation report:
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 12]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  Administrator: Administrator that operates on the device
 
@@ -611,13 +708,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  process_number: Specifies total number of system processes
 
-
-
-Xia, et al.            Expires September 14, 2017              [Page 11]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
    o  in_traffic_rate: The total inbound traffic rate in pps
 
    o  out_traffic_rate: The total outbound traffic rate in pps
@@ -632,6 +722,13 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    (such as login time, online/lockout duration, and login IP addresses)
    and the actions users perform.  User activity reports are helpful to
    identify exceptions during user login and network access activities.
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 13]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  user: Name of a user
 
@@ -666,14 +763,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  in_total_traffic_pkts: Total inbound packets
 
-
-
-
-Xia, et al.            Expires September 14, 2017              [Page 12]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
    o  out_total_traffic_pkts: Total outbound packets
 
    o  in_total_traffic_bytes: Total inbound bytes
@@ -689,6 +778,13 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    o  out_drop_traffic_bytes: Total outbound drop bytes
 
    o  in_traffic_ave_rate: Inbound traffic average rate in pps
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 14]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  in_traffic_peak_rate: Inbound traffic peak rate in pps
 
@@ -723,13 +819,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  start_time: The time stamp indicating when the attack started
 
-
-
-Xia, et al.            Expires September 14, 2017              [Page 13]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
    o  end_time: The time stamp indicating when the attack ended.  If the
       attack is still undergoing when sending out the alarm, this field
       can be empty.
@@ -743,6 +832,15 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    o  rule_name: The name of the rule being triggered
 
    o  profile: Security profile that traffic matches.
+
+
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 15]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
 7.5.2.  Session Table Event
 
@@ -779,13 +877,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  src_port: The source port of the packet where the virus is found
 
-
-
-Xia, et al.            Expires September 14, 2017              [Page 14]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
    o  dst_port: The destination port of the packet where the virus is
       found
 
@@ -798,6 +889,14 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    o  file_type: The type of the file where the virus is hided within
 
    o  file_name: The name of the file where the virus is hided within
+
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 16]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  virus_info: The brief introduction of virus
 
@@ -834,14 +933,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  app: The employed application layer protocol, e.g.,HTTP, FTP
 
-
-
-
-Xia, et al.            Expires September 14, 2017              [Page 15]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
    o  rule_id: The ID of the rule being triggered
 
    o  rule_name: The name of the rule being triggered
@@ -852,6 +943,16 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  raw_info: The information describing the packet triggering the
       event.
+
+
+
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 17]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
 7.5.5.  Botnet Event
 
@@ -891,13 +992,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
       6.  The packet from the IRC/WEB server to the attacker
 
-
-
-Xia, et al.            Expires September 14, 2017              [Page 16]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
       7.  The packet from the zombie host to the victim
 
    o  botnet_info: Simple description of Botnet
@@ -907,6 +1001,14 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    o  rule_name: The name of the rule being triggered
 
    o  profile: Security profile that traffic matches
+
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 18]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  raw_info: The information describing the packet triggering the
       event.
@@ -946,14 +1048,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  rule_name: The name of the rule being triggered
 
-
-
-
-Xia, et al.            Expires September 14, 2017              [Page 17]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
    o  profile: Security profile that traffic matches.
 
 7.6.  NSF Logs
@@ -964,6 +1058,13 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    be included in a DDoS Logs:
 
    o  attack_type: DDoS
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 19]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  attack_ave_rate: The average pps of the attack traffic within the
       recorded time
@@ -998,18 +1099,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    o  os: The OS that the virus will affect, e.g., all, android, ios,
       unix, windows
 
-
-
-
-
-
-
-
-Xia, et al.            Expires September 14, 2017              [Page 18]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
 7.6.3.  Intrusion Logs
 
    Besides the fields in an Intrusion Alarm, the following information
@@ -1024,6 +1113,14 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  action: The actions dealing with the intrusions, e.g., e.g.,
       Allow, Alert, Block, Discard, Declare, Block-ip, Block-service
+
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 20]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  attack_rate: NUM the pps of attack traffic
 
@@ -1058,14 +1155,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  file_name: The file name
 
-
-
-
-Xia, et al.            Expires September 14, 2017              [Page 19]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
    o  file_type: The file type
 
    o  src_zone: Source security zone of traffic
@@ -1081,6 +1170,13 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    o  src_user: User who generates traffic
 
    o  dst_ip: Destination IP address of traffic
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 21]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  src_port: Source port of traffic
 
@@ -1114,14 +1210,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  service: The service which has vulnerabillity in the victim host
 
-
-
-
-Xia, et al.            Expires September 14, 2017              [Page 20]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
    o  protocol: The protocol type. e.g., TCP, UDP
 
    o  port: The port number
@@ -1138,6 +1226,13 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    o  attack_type: Web Attack
 
    o  rsp_code: Response code
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 22]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  req_clientapp: The client application
 
@@ -1170,14 +1265,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  dst_ip: Destination IP address of traffic
 
-
-
-
-Xia, et al.            Expires September 14, 2017              [Page 21]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
    o  src_port: Source port of traffic
 
    o  dst_port: Destination port of traffic
@@ -1195,6 +1282,13 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    o  out_interface: Outbound interface of traffic
 
    o  total_traffic: Total traffic volume
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 23]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  in_traffic_ave_rate: Inbound traffic average rate in pps
 
@@ -1226,14 +1320,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
    o  dst_region: Destination region of the traffic
 
-
-
-
-Xia, et al.            Expires September 14, 2017              [Page 22]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
    o  src_ip: Source IP address of traffic
 
    o  src_user: User who generates traffic
@@ -1251,6 +1337,14 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    o  policy_id: Security policy id that traffic matches
 
    o  policy_name: Security policy name that traffic matches
+
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 24]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
 
    o  hit_times: The hit times that the security policy matches the
       specified traffic.
@@ -1280,16 +1374,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    considered in NSF and security controller, whether in advance or just
    in the process of DDoS attack.
 
-
-
-
-
-
-Xia, et al.            Expires September 14, 2017              [Page 23]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
 10.  References
 
 10.1.  Normative References
@@ -1307,6 +1391,28 @@ Internet-Draft            IM for NSF Monitoring               March 2017
               Detection Message Exchange Format (IDMEF)", RFC 4765,
               DOI 10.17487/RFC4765, March 2007,
               <http://www.rfc-editor.org/info/rfc4765>.
+
+
+
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 25]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
+
+
+   [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2",
+              FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007,
+              <http://www.rfc-editor.org/info/rfc4949>.
+
+   [RFC5424]  Gerhards, R., "The Syslog Protocol", RFC 5424,
+              DOI 10.17487/RFC5424, March 2009,
+              <http://www.rfc-editor.org/info/rfc5424>.
+
+   [RFC6587]  Gerhards, R. and C. Lonvick, "Transmission of Syslog
+              Messages over TCP", RFC 6587, DOI 10.17487/RFC6587, April
+              2012, <http://www.rfc-editor.org/info/rfc6587>.
 
 10.2.  Informative References
 
@@ -1334,18 +1440,6 @@ Internet-Draft            IM for NSF Monitoring               March 2017
               "Information Model of NSFs Capabilities", draft-xibassnez-
               i2nsf-capability-01 (work in progress), March 2017.
 
-
-
-
-
-
-
-
-Xia, et al.            Expires September 14, 2017              [Page 24]
-
-Internet-Draft            IM for NSF Monitoring               March 2017
-
-
 Acknowledgements
 
 Authors' Addresses
@@ -1354,6 +1448,14 @@ Authors' Addresses
    Huawei
 
    Email: frank.xialiang@huawei.com
+
+
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 26]
+
+Internet-Draft            IM for NSF Monitoring               March 2017
 
 
    Dacheng Zhang
@@ -1397,4 +1499,14 @@ Authors' Addresses
 
 
 
-Xia, et al.            Expires September 14, 2017              [Page 25]
+
+
+
+
+
+
+
+
+
+
+Xia, et al.            Expires September 14, 2017              [Page 27]
