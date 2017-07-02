@@ -189,7 +189,7 @@ entities in a composite device) via records or counters that are not exposed
 directly via Client-Facing Interfaces.
 
 Information emitted via standardized interfaces can be consumed by an I2NSF
-Agent {{-i2nsf-terminology}} including the capability to consume information not
+Agent {{-i2nsf-terminology}} that includes the capability to consume information not
 only via I2NSF interfaces but also via interfaces complementary to the
 standardized interfaces a generic system entity provides.
 
@@ -229,7 +229,9 @@ system being managed.” {{-i2nsf-terminology}}, which aligns well with the
 generic definition of Event from {{RFC3877}}.
 
 The model illustrated in this document introduces a complementary type of
-information that can be conveyed--- a Notification:
+information that can be conveyed---notification.
+
+Notification:
 
 : An occurrence of a change of context, composition, configuration, state or
 behavior of a system entity that can be directly or indirectly observed by an
