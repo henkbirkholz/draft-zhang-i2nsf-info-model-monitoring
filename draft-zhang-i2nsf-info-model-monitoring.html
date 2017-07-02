@@ -574,7 +574,7 @@ address {
 <a href="#rfc.section.4.1">4.1.</a> <a href="#emission-and-retention" id="emission-and-retention">Emission and Retention</a>
 </h1>
 <p id="rfc.section.4.1.p.1">Typically, a system entity populates standardized interface, such as SNMP, NETCONF, RESTCONF or CoMI to provide and emit created information directly via Client-Facing Interfaces <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a>. Alternatively, the created information is retained inside the system entity (or hierarchy of system entities in a composite device) via records or counters that are not exposed directly via Client-Facing Interfaces.</p>
-<p id="rfc.section.4.1.p.2">Information emitted via standardized interfaces can be consumed by an I2NSF Agent <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a> including the capability to consume information not only via I2NSF interfaces but also via interfaces complementary to the standardized interfaces a generic system entity provides.</p>
+<p id="rfc.section.4.1.p.2">Information emitted via standardized interfaces can be consumed by an I2NSF Agent <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a> that includes the capability to consume information not only via I2NSF interfaces but also via interfaces complementary to the standardized interfaces a generic system entity provides.</p>
 <p id="rfc.section.4.1.p.3">Information retained on a system entity requires a corresponding I2NSF Agent to access aggregated records of information, typically in the form of logfiles or databases. There are ways to aggregate records originating from different system entities over a network, for examples via <a href="#RFC5424" class="xref">[RFC5424]</a> or <a href="#RFC6587" class="xref">[RFC6587]</a>. But even if records are conveyed, the result is the same kind retention in form of a bigger aggregate of records on another system entity.</p>
 <p id="rfc.section.4.1.p.4">An I2NSF agent is required to process freshly <a href="#RFC4949" class="xref">[RFC4949]</a> created records via I2NSF functions to provide them to other I2NSF components via corresponding I2NSF interfaces. This process is effectively based on homogenizing functions that can access and convert specific kinds of records into information that can be provided and emitted via I2NSF interfaces.</p>
 <p id="rfc.section.4.1.p.5">Retained or emitted, the information required to support monitoring processes has to be processed by an I2NSF agent at some point in the work-flow. Typical locations of that I2NSF agents are:</p>
@@ -590,17 +590,16 @@ address {
 <a href="#rfc.section.4.2">4.2.</a> <a href="#notifications-and-events" id="notifications-and-events">Notifications and Events</a>
 </h1>
 <p id="rfc.section.4.2.p.1">A specific task of I2NSF agents is to process I2NSF Policy Rules <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a>. Rules are composed of three boolean clauses: Events, Conditions, and Actions. In consequence, an I2NSF event is required to trigger an I2NSF Policy Rule. &#8220;An I2NSF Event is defined as any important occurrence in time of a change in the system being managed, and/or in the environment of the system being managed.&#8221; <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a>, which aligns well with the generic definition of Event from <a href="#RFC3877" class="xref">[RFC3877]</a>.</p>
+<p id="rfc.section.4.2.p.2">The model illustrated in this document introduces a complementary type of information that can be conveyed&#8212;notification.</p>
 <p></p>
 
 <dl>
-<dt>The model illustrated in this document introduces a complementary type of</dt>
-<dd style="margin-left: 8"></dd>
-<dt>information that can be conveyed&#8212; a Notification:</dt>
+<dt>Notification:</dt>
 <dd style="margin-left: 8">An occurrence of a change of context, composition, configuration, state or behavior of a system entity that can be directly or indirectly observed by an I2NSF agent and can be used as input for an event-clause in I2NSF Policy Rules.</dd>
 <dt></dt>
 <dd style="margin-left: 8">A notification is similar to an I2NSF event with the exception that it is not created by an I2NSF component and that its importances is yet to be assessed.  Notifications therefore can contain information with very low expressiveness or relevance. In consequence, additional post-processing functions, such as aggregation, correlation or simple anomaly detection, might have to be employed to satisfy a level of expressiveness that is required for an event-clause of an I2NSF Policy Rule.</dd>
 </dl>
-<p id="rfc.section.4.2.p.3">It is important to note that the consumer of a notification (the observer) assesses the importance of a notification and not the producer. The producer can include metadata in a notification that supports the observer in assessing the importance, but the deciding entity is an I2NSF agent.</p>
+<p id="rfc.section.4.2.p.4">It is important to note that the consumer of a notification (the observer) assesses the importance of a notification and not the producer. The producer can include metadata in a notification that supports the observer in assessing the importance, but the deciding entity is an I2NSF agent.</p>
 <h1 id="rfc.section.4.3">
 <a href="#rfc.section.4.3">4.3.</a> <a href="#unsolicited-poll-and-solicited-push" id="unsolicited-poll-and-solicited-push">Unsolicited Poll and Solicited Push</a>
 </h1>

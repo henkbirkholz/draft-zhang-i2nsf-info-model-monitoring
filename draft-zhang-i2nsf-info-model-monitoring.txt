@@ -283,8 +283,8 @@ Internet-Draft            IM for NSF Monitoring               March 2017
 
 
    Information emitted via standardized interfaces can be consumed by an
-   I2NSF Agent [I-D.ietf-i2nsf-terminology] including the capability to
-   consume information not only via I2NSF interfaces but also via
+   I2NSF Agent [I-D.ietf-i2nsf-terminology] that includes the capability
+   to consume information not only via I2NSF interfaces but also via
    interfaces complementary to the standardized interfaces a generic
    system entity provides.
 
@@ -329,7 +329,7 @@ Internet-Draft            IM for NSF Monitoring               March 2017
    generic definition of Event from [RFC3877].
 
    The model illustrated in this document introduces a complementary
-   type of
+   type of information that can be conveyed--notification.
 
 
 
@@ -338,11 +338,10 @@ Xia, et al.            Expires September 14, 2017               [Page 6]
 Internet-Draft            IM for NSF Monitoring               March 2017
 
 
-   information that can be conveyed-- a Notification:  An occurrence of
-      a change of context, composition, configuration, state or behavior
-      of a system entity that can be directly or indirectly observed by
-      an I2NSF agent and can be used as input for an event-clause in
-      I2NSF Policy Rules.
+   Notification:  An occurrence of a change of context, composition,
+      configuration, state or behavior of a system entity that can be
+      directly or indirectly observed by an I2NSF agent and can be used
+      as input for an event-clause in I2NSF Policy Rules.
 
       A notification is similar to an I2NSF event with the exception
       that it is not created by an I2NSF component and that its
@@ -386,6 +385,7 @@ Internet-Draft            IM for NSF Monitoring               March 2017
       be useful for visibility and retroactive cyber forensic.
       Depending on the record format, there different qualities in
       regard to structure and detail.  Records are typically stored in
+      logfiles or databases on a system entity or NSF.  Records in the
 
 
 
@@ -394,7 +394,6 @@ Xia, et al.            Expires September 14, 2017               [Page 7]
 Internet-Draft            IM for NSF Monitoring               March 2017
 
 
-      logfiles or databases on a system entity or NSF.  Records in the
       form of logfiles usually include less structures but potentially
       more detailed information in regard to changes of an system
       entity's characteristics.  In contrast, databases often use more
@@ -442,6 +441,7 @@ Internet-Draft            IM for NSF Monitoring               March 2017
       Discovery of available monitoring information can be supported by
       an I2NSF Controller that takes on the role of a broker and
       therefore I2NSF Capabilities are registered at.
+
 
 
 
