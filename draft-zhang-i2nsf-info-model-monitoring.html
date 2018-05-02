@@ -9,77 +9,30 @@
 
   
 <style type="text/css">/*<![CDATA[*/
-@viewport {
-  zoom: 1.0;
-  width: extend-to-zoom;
-}
-@-ms-viewport {
-  width: extend-to-zoom;
-  zoom: 1.0;
-}
-
-@media screen and (min-width: 1024px) {
-  ul.toc, #rfc\.toc {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    right: calc(50vw - 500px);
-    width: 300px;
-    padding: 0 1em;
-    z-index: 1;
-  }
-  #rfc\.toc {
-    top: 16px;
-  }
-  ul.toc {
-    top: 80px;
-    overflow: auto;
-  }
-
-  body {
-    padding-left: 1.5em;
-    padding-right: 29em;
-  }
-}
 
 body {
-  font: 15px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font: 16px "Helvetica Neue","Open Sans",Helvetica,Calibri,sans-serif;
   color: #333;
   font-size-adjust: 0.5;
-  line-height: 130%;
-  margin: 2.5em auto;
+  line-height: 24px;
+  margin: 75px auto;
   max-width: 724px;
+  padding: 0 5px;
 }
 
-.title, .filename, h1, h2, h3, h4 {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+.title, .filename, h1, h2, h3, h4, h5 {
+  font: 16px "Helvetica Neue","Roboto Condensed","Open Sans",Helvetica,Calibri,sans-serif;
   font-size-adjust: 0.5;
-  font-weight: 500;
+  font-weight: bold;
   color: #333;
   line-height: 100%;
   margin: 0.8em 0 0.3em;
 }
-.title { font-size: 36px; }
-h1 { font-size: 30px; }
-h2 { font-size: 24px; }
-h3, h4 { font-size: 18px; }
+.title, #rfc\.title h1 { font-size: 32px; }
+h1, section h1, h2, section h2, section h3, nav h2 { font-size: 20px; }
+h3, section h4, h4, section h5 { font-size: 16px; }
 h1 a[href], h2 a[href], h3 a[href], h4 a[href] {
   color: #333;
-}
-
-ul.toc li {
-  list-style: none;
-  text-indent: -2.5em;
-  padding-left: 2.5em;
-  padding-bottom: 5px;
-  margin: 0;
-}
-ul.toc ul {
-  margin: 0;
-}
-/* xml2rfc nests ul directly inside ul which messes with the style badly */
-ul.toc, ul.toc>ul, ul.toc ul>ul {
-  margin: 0 0 0 1.5em;
 }
 
 table {
@@ -108,25 +61,26 @@ td.reference {
 }
 
 
-table.header {
+table.header, table#rfc\.headerblock {
   width: 100%;
 }
-table.header td {
+table.header td, table#rfc\.headerblock td {
   border: none;
   background-color: transparent;
   color: black;
+  padding: 0;
 }
 .filename {
+  display: block;
   color: rgb(119, 119, 119);
-  font-size: 23px;
-  font-weight: normal;
-  height: auto;
-  line-height: 100%;
-}
-#rfc\.abstract+p {
   font-size: 20px;
-  font-weight: 300;
-  line-height: 130%;
+  font-weight: normal;
+  line-height: 100%;
+  margin: 10px 0 32px;
+}
+#rfc\.abstract+p, #rfc\.abstract p {
+  font-size: 20px;
+  line-height: 28px;
 }
 
 samp, tt, code, pre {
@@ -140,13 +94,15 @@ pre {
   padding: 5px;
   margin: 5px;
 }
-.figure {
+.figure, caption {
   font-style: italic;
   margin: 0 1.5em;
+  text-align: left;
 }
 
 address {
-  margin: 10px 0 0;
+  margin: 16px 2px;
+  line-height: 20px;
 }
 .vcard {
   font-style: normal;
@@ -154,8 +110,8 @@ address {
 .vcardline {
   display: block;
 }
-.vcardline .fn {
-  font-weight: bold;
+.vcardline .fn, address b {
+  font-weight: normal;
 }
 .vcardline .hidden {
   display: none;
@@ -195,6 +151,9 @@ hr {
   border: 0;
   border-top: 1px solid #eee;
 }
+hr.noprint {
+  display: none;
+}
 
 a {
   text-decoration: none;
@@ -215,6 +174,45 @@ li, p {
 }
 address {
   font-style: normal;
+}
+
+ul.toc ul {
+  margin: 0 0 0 2em;
+}
+ul.toc li {
+  list-style: none;
+  margin: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    padding-right: 350px;
+  }
+  body>ul.toc, body>#rfc\.toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 550px);
+    width: 300px;
+    z-index: 1;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  body>#rfc\.toc {
+    top: 55px;
+  }
+  body>ul.toc {
+    top: 100px;
+  }
+
+  ul.toc {
+    margin: 0 0 0 4px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  ul.toc ul {
+    margin-left: 1.2em;
+  }
 }
 
 .github-fork-ribbon-wrapper {
@@ -274,6 +272,7 @@ address {
     position: fixed;
   }
   /*]]>*/</style>
+  <meta name="viewport" content="initial-scale=1.0">
 
 
   <link href="#rfc.toc" rel="Contents">
@@ -288,6 +287,7 @@ address {
 <link href="#rfc.section.4.3" rel="Chapter" title="4.3 Unsolicited Poll and Solicited Push">
 <link href="#rfc.section.4.4" rel="Chapter" title="4.4 I2NSF Monitoring Terminology for Retained Information">
 <link href="#rfc.section.5" rel="Chapter" title="5 Conveyance of NSF Monitoring Information">
+<link href="#rfc.section.5.1" rel="Chapter" title="5.1 Information Types and Acquisition Methods">
 <link href="#rfc.section.6" rel="Chapter" title="6 Basic Information Model for All Monitoring Data">
 <link href="#rfc.section.7" rel="Chapter" title="7 Extended Information Model for Monitoring Data">
 <link href="#rfc.section.7.1" rel="Chapter" title="7.1 System Alarm">
@@ -332,14 +332,14 @@ address {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.6.2 - http://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.9.6 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Xia, L., Zhang, D., Wu, Y., Kumar, R., Lohiya, A., and H. Birkholz" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-zhang-i2nsf-info-model-monitoring-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2017-3-13" />
-  <meta name="dct.abstract" content="The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSFs to enforce the security policy provisioning and network security status monitoring. This document focuses on the monitoring part of it and proposes the information model for it." />
-  <meta name="description" content="The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSFs to enforce the security policy provisioning and network security status monitoring. This document focuses on the monitoring part of it and proposes the information model for it." />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-03-13" />
+  <meta name="dct.abstract" content="The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSF to enforce security policy provisioning and network security status monitoring. This document focuses on the monitoring part and defines the corresponding information model for it." />
+  <meta name="description" content="The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSF to enforce security policy provisioning and network security status monitoring. This document focuses on the monitoring part and defines the corresponding information model for it." />
 
 </head>
 
@@ -401,7 +401,7 @@ address {
   <span class="filename">draft-zhang-i2nsf-info-model-monitoring-latest</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSFs to enforce the security policy provisioning and network security status monitoring. This document focuses on the monitoring part of it and proposes the information model for it.</p>
+<p>The Network Security Functions (NSF) NSF-facing interface exists between the Service Provider&#8217;s management system (or Security Controller) and the NSF to enforce security policy provisioning and network security status monitoring. This document focuses on the monitoring part and defines the corresponding information model for it.</p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
@@ -438,7 +438,9 @@ address {
 </li>
 </ul><li>5.   <a href="#rfc.section.5">Conveyance of NSF Monitoring Information</a>
 </li>
-<li>6.   <a href="#rfc.section.6">Basic Information Model for All Monitoring Data</a>
+<ul><li>5.1.   <a href="#rfc.section.5.1">Information Types and Acquisition Methods</a>
+</li>
+</ul><li>6.   <a href="#rfc.section.6">Basic Information Model for All Monitoring Data</a>
 </li>
 <li>7.   <a href="#rfc.section.7">Extended Information Model for Monitoring Data</a>
 </li>
@@ -529,8 +531,8 @@ address {
   <h1 id="rfc.section.1">
 <a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
 </h1>
-<p id="rfc.section.1.p.1">According to <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a>, the interface provided by a NSF (e.g., FW, IPS, Anti-DDOS, or Anti-Virus function) to administrative entities (e.g., NMS, security controller) for configuring security function in the NSF and monitoring the NSF is referred to as a &#8220;I2NSF NSF-Facing Interface&#8221;. The monitoring part of it is meant to acquire vital information about the NSF via,  e.g. notifications, events, records, counters. The monitoring of the NSF plays a very important role in the overall security framework if done in a timely and comprehensive way. The monitoring information generated by a NSF can very well be an early indication of malicious activity, or anomalous behavior, or a potential sign of denial of service attacks.</p>
-<p id="rfc.section.1.p.2">This draft proposes a comprehensive NSF monitoring information model that provides visibility into NSFs. This document will not go into the design details of NSF-Facing Interfaces. Instead, this draft is focused on specifying the information and illustrates the methods that enable a NSF to provide the information required in order to be monitored in a scalable and efficient way via the NSF-Facing Interface. The information model for monitoring presented in this document is a complement to the information model for the security policy provisioning part of the NSF-Facing Interface specified in <a href="#I-D.xibassnez-i2nsf-capability" class="xref">[I-D.xibassnez-i2nsf-capability]</a>.</p>
+<p id="rfc.section.1.p.1">According to <a href="#I-D.ietf-i2nsf-terminology" class="xref">[I-D.ietf-i2nsf-terminology]</a>, the interface provided by an NSF (e.g., FW, IPS, Anti-DDOS, or Anti-Virus function) to administrative entities (e.g., NMS, security controller) to enable remote management (i.e. configuring and monitoring) is referred to as an &#8220;I2NSF NSF-Facing Interface&#8221;. Monitoring procedures intent to acquire vital types of data at rest with respect to NSF, e.g. alarms, records, or counters, via data in motion, e.g. queries, notifications, or events. The monitoring of NSF plays an important role in the overall security framework, if done in a timely and comprehensive way. The monitoring information generated by an NSF can very well be an early indication of anomalous behavior or malicious activity, such as denial of service attacks.</p>
+<p id="rfc.section.1.p.2">This draft defines a comprehensive NSF monitoring information model that provides visibility into NSF. This document will not go into the design details of NSF-Facing Interfaces. Instead, it is focused on specifying the information and illustrates the methods that enable NSF to provide the information required in order to be monitored in a scalable and efficient way via the NSF-Facing Interface. The information model for monitoring presented in this document is a complement to the information model for the security policy provisioning part of the NSF-Facing Interface specified in <a href="#I-D.xibassnez-i2nsf-capability" class="xref">[I-D.xibassnez-i2nsf-capability]</a>.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a>
 </h1>
@@ -545,21 +547,21 @@ address {
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#use-cases-for-nsf-monitoring-data" id="use-cases-for-nsf-monitoring-data">Use cases for NSF Monitoring Data</a>
 </h1>
-<p id="rfc.section.3.p.1">As mentioned earlier, monitoring plays a very critical role in the overall security framework. The monitoring of the NSF provides very valuable information to the security controller in maintaining the provisioned security posture. Besides this, there are various other reasons to monitor the NSFs as listed below:</p>
+<p id="rfc.section.3.p.1">As mentioned earlier, monitoring plays a critical role in the overall security framework. The monitoring of the NSF provides very valuable information to the security controller in maintaining the provisioned security posture. Besides this, there are various other reasons to monitor the NSF as listed below:</p>
 <p></p>
 
 <ul>
-<li>The security administrator can configure a policy that is triggered on a specific event happened in the NSF or the network.  The security controller would monitor for the specified event and once it happens, it configures additional security functions as per the policy.</li>
-<li>The events triggered by NSFs as a result of security policy violation can be used by SIEM to detect any suspicious activity.</li>
-<li>The events and activity logs from NSFs can be used to build advanced analytics such as behavior and predictive to improve the security posture.</li>
-<li>The security controller can use events from the NSF for achieving high availability. It can take corrective actions such as restarting a failed NSF, horizontally scaling the NSF etc.</li>
-<li>The events and activity logs from the NSF can aid in debugging and root cause analysis of an operational issue.</li>
+<li>The security administrator can configure a policy that is triggered on a specific event occurring in the NSF or the network.  If a security controller detects the specified event, it configures additional security functions as defined by policies.</li>
+<li>The events triggered by NSF as a result of security policy violation can be used by SIEM to detect any suspicious activity in a larger correlation context.</li>
+<li>The events and activity logs from NSF can be used to build advanced analytics, such as behavior and predictive models to improve security posture in large deplyoments.</li>
+<li>The security controller can use events from the NSF for achieving high availability. It can take corrective actions such as restarting a failed NSF, horizontally scaling the NSF, etc.</li>
+<li>The events and activity logs from the NSF can aid in the root cause analysis of an operational issue - therefore improve debugging.</li>
 <li>The activity logs from the NSF can be used to build historical data for operational and business reasons.</li>
 </ul>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#classification-of-nsf-monitoring-data" id="classification-of-nsf-monitoring-data">Classification of NSF Monitoring Data</a>
 </h1>
-<p id="rfc.section.4.p.1">In order to maintain a strong security posture, it is not only necessary to configure NSF security policies but also to continuously monitor NSF by consuming acquirable observable information. This enables security admins to assess what is happening in the network timely. It is not possible to block all the internal and external threats based on static security posture. To achieve this goal, a very dynamic posture with constant visibility is required. This draft defines a set of information elements (and their scope) that can be acquired from NSF and can be used as monitoring information. In essence, these types of monitoring information can be leveraged to support constant visibility on multiple levels of granularity and can be consumed by corresponding functions.</p>
+<p id="rfc.section.4.p.1">In order to maintain a strong security posture, it is not only necessary to configure NSF security policies but also to continuously monitor NSF by consuming acquirable and therefore observable information. This enables security admins to assess the state of the network topology in a timely fashion. It is not possible to block all the internal and external threats based on static security posture. A more practical approach is supported by enabling dynamic security measures - for which continuous visibility is required. This draft defines a set of information elements (and their scope) that can be acquired from NSF and can be used as monitoring information. In essence, these types of monitoring information can be leveraged to support constant visibility on multiple levels of granularity and can be consumed by corresponding functions.</p>
 <p id="rfc.section.4.p.2">Three basic domains about the monitoring of information originating from a system entity <a href="#RFC4949" class="xref">[RFC4949]</a> or a NSF are highlighted in this document.</p>
 <p></p>
 
@@ -597,7 +599,7 @@ address {
 <dt>Notification:</dt>
 <dd style="margin-left: 8">An occurrence of a change of context, composition, configuration, state or behavior of a system entity that can be directly or indirectly observed by an I2NSF Agent and can be used as input for an event-clause in I2NSF Policy Rules.</dd>
 <dt></dt>
-<dd style="margin-left: 8">A notification is similar to an I2NSF Event with the exception that it is created by a system entity that is not an I2NSF Component and that its importances is yet to be assessed. Semantically, a notification is not an I2NSF Event in the context of I2NSF, although they can potentially use the exact same information or data model. In respect to <a href="#RFC3877" class="xref">[RFC3877]</a>, a Notification is a specific subset of events, because they convey information about &#8220;something that happens which may be of interest&#8221;.  In consequence, Notifications can contain information with very low expressiveness or relevance. Hence, additional post-processing functions, such as aggregation, correlation or simple anomaly detection, might have to be employed to satisfy a level of expressiveness that is required for an event-clause of an I2NSF Policy Rule.</dd>
+<dd style="margin-left: 8">A notification is similar to an I2NSF Event with the exception that it is created by a system entity that is not an I2NSF Component and that its importances is yet to be assessed. Semantically, a notification is not an I2NSF Event in the context of I2NSF, although they can potentially use the exact same information or data model. In respect to <a href="#RFC3877" class="xref">[RFC3877]</a>, a Notification is a specific subset of events, because they convey information about &#8220;something that happens which may be of interest&#8221;.  In consequence, Notifications may contain information with very low expressiveness or relevance. Hence, additional post-processing functions, such as aggregation, correlation or simple anomaly detection, might have to be employed to satisfy a level of expressiveness that is required for an event-clause of an I2NSF Policy Rule.</dd>
 </dl>
 <p id="rfc.section.4.2.p.4">It is important to note that the consumer of a notification (the observer) assesses the importance of a notification and not the producer. The producer can include metadata in a notification that supports the observer in assessing the importance (even metadata about severity), but the deciding entity is an I2NSF Agent.</p>
 <h1 id="rfc.section.4.3">
@@ -628,9 +630,12 @@ address {
 <li>Export Frequency: Monitoring information can be emitted immediately upon generation by a NSF to requesting I2NSF Consumers or can be pushed periodically. The frequency of exporting the data depends upon its size and timely usefulness. It is out of the scope of I2NSF and left to each NSF implementation.</li>
 <li>Authentication: There may be a need for authentication between I2NSF Producer of monitoring information and corresponding I2NSF Consumer to ensure that critical information remains confidential. Authentication in the scope of I2NSF can also require a corresponding content authorization.  This may be necessary, for example, if a NSF emits monitoring information to I2NSF Consumer outside its administrative domain. The I2NSF Architecture does not mandate when and how specific authentication has to be implemented.</li>
 <li>Data-Transfer Model: Monitoring information can be pushed by NSF using a connection-less model that does require a persistent connection or streamed over a persistent connection. An appropriate model depends on the I2NSF Consumer requirements and the semantics of the information to be conveyed.</li>
-<li>Data Model and Interaction Model for Data in Motion: There are a lot of</li>
-<li>transport mechanisms such as IP, UDP, TCP. There are also open source implementations for specific set of data such as systems counter, e.g. IPFIX <a href="#RFC7011" class="xref">[RFC7011]</a> or NetFlow <a href="#RFC3954" class="xref">[RFC3954]</a>. The I2NSF does not mandate any specific method for a given data set, it is up to each implementation.</li>
+<li>Data Model and Interaction Model for Data in Motion: There are a lot of transport mechanisms such as IP, UDP, TCP. There are also open source implementations for specific set of data such as systems counter, e.g. IPFIX <a href="#RFC7011" class="xref">[RFC7011]</a> or NetFlow <a href="#RFC3954" class="xref">[RFC3954]</a>. The I2NSF does not mandate any specific method for a given data set, it is up to each implementation.</li>
 </ul>
+<h1 id="rfc.section.5.1">
+<a href="#rfc.section.5.1">5.1.</a> <a href="#information-types-and-acquisition-methods" id="information-types-and-acquisition-methods">Information Types and Acquisition Methods</a>
+</h1>
+<p id="rfc.section.5.1.p.1">In this document most information types defined, benefit from high visibility with respect to value changes, e.g. alarms or records.  In contrast, values that change monotonically in a continuous way do not benefit from this high visibility.  On the contrary, emitting each change would result in a useless amount of value updates.  Hence, values, such as counter, are best acquired in periodic intervals.</p>
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#basic-information-model-for-all-monitoring-data" id="basic-information-model-for-all-monitoring-data">Basic Information Model for All Monitoring Data</a>
 </h1>
@@ -650,10 +655,17 @@ address {
 <a href="#rfc.section.7">7.</a> <a href="#extended-information-model-for-monitoring-data" id="extended-information-model-for-monitoring-data">Extended Information Model for Monitoring Data</a>
 </h1>
 <p id="rfc.section.7.p.1">This section covers the additional information associated with the system messages. The extended information model is only for the structured data such as alarm. Any unstructured data is specified with basic information model only.</p>
-<p id="rfc.section.7.p.2">[Editors&#8217; note]: This section remains the same as -02 version, although the classification of the monitoring data has been changed from -02 version. The new inconsistency will be addressed in next verion.</p>
 <h1 id="rfc.section.7.1">
 <a href="#rfc.section.7.1">7.1.</a> <a href="#system-alarm" id="system-alarm">System Alarm</a>
 </h1>
+<p id="rfc.section.7.1.p.1">Characteristics:</p>
+<p></p>
+
+<ul>
+<li>acquisition_method: subscription</li>
+<li>emission_type: on-change</li>
+<li>dampening_type: no-dampening</li>
+</ul>
 <h1 id="rfc.section.7.1.1">
 <a href="#rfc.section.7.1.1">7.1.1.</a> <a href="#memory-alarm" id="memory-alarm">Memory Alarm</a>
 </h1>
@@ -724,6 +736,14 @@ address {
 <h1 id="rfc.section.7.2">
 <a href="#rfc.section.7.2">7.2.</a> <a href="#system-events" id="system-events">System Events</a>
 </h1>
+<p id="rfc.section.7.2.p.1">Characteristics:</p>
+<p></p>
+
+<ul>
+<li>acquisition_method: subscription</li>
+<li>emission_type: on-change</li>
+<li>dampening_type: on_repetition</li>
+</ul>
 <h1 id="rfc.section.7.2.1">
 <a href="#rfc.section.7.2.1">7.2.1.</a> <a href="#access-violation" id="access-violation">Access Violation</a>
 </h1>
@@ -755,6 +775,14 @@ address {
 <h1 id="rfc.section.7.3">
 <a href="#rfc.section.7.3">7.3.</a> <a href="#system-log" id="system-log">System Log</a>
 </h1>
+<p id="rfc.section.7.3.p.1">Characteristics:</p>
+<p></p>
+
+<ul>
+<li>acquisition_method: subscription</li>
+<li>emission_type: on-change</li>
+<li>dampening_type: on_repetition</li>
+</ul>
 <h1 id="rfc.section.7.3.1">
 <a href="#rfc.section.7.3.1">7.3.1.</a> <a href="#access-logs" id="access-logs">Access Logs</a>
 </h1>
@@ -808,6 +836,14 @@ address {
 <h1 id="rfc.section.7.4">
 <a href="#rfc.section.7.4">7.4.</a> <a href="#system-counters" id="system-counters">System Counters</a>
 </h1>
+<p id="rfc.section.7.4.p.1">Characteristics:</p>
+<p></p>
+
+<ul>
+<li>acquisition_method: subscription or query</li>
+<li>emission_type: periodical</li>
+<li>dampening_type: none</li>
+</ul>
 <h1 id="rfc.section.7.4.1">
 <a href="#rfc.section.7.4.1">7.4.1.</a> <a href="#interface-counters" id="interface-counters">Interface counters</a>
 </h1>
@@ -836,6 +872,14 @@ address {
 <h1 id="rfc.section.7.5">
 <a href="#rfc.section.7.5">7.5.</a> <a href="#nsf-events" id="nsf-events">NSF Events</a>
 </h1>
+<p id="rfc.section.7.5.p.1">Characteristics:</p>
+<p></p>
+
+<ul>
+<li>acquisition_method: subscription</li>
+<li>emission_type: on-change</li>
+<li>dampening_type: none</li>
+</ul>
 <h1 id="rfc.section.7.5.1">
 <a href="#rfc.section.7.5.1">7.5.1.</a> <a href="#ddos-event" id="ddos-event">DDoS Event</a>
 </h1>
@@ -974,6 +1018,14 @@ address {
 <h1 id="rfc.section.7.6">
 <a href="#rfc.section.7.6">7.6.</a> <a href="#nsf-logs" id="nsf-logs">NSF Logs</a>
 </h1>
+<p id="rfc.section.7.6.p.1">Characteristics:</p>
+<p></p>
+
+<ul>
+<li>acquisition_method: subscription</li>
+<li>emission_type: on-change</li>
+<li>dampening_type: on_repetition</li>
+</ul>
 <h1 id="rfc.section.7.6.1">
 <a href="#rfc.section.7.6.1">7.6.1.</a> <a href="#ddos-logs" id="ddos-logs">DDoS Logs</a>
 </h1>
@@ -1087,6 +1139,14 @@ address {
 <h1 id="rfc.section.7.7">
 <a href="#rfc.section.7.7">7.7.</a> <a href="#nsf-counters" id="nsf-counters">NSF Counters</a>
 </h1>
+<p id="rfc.section.7.7.p.1">Characteristics:</p>
+<p></p>
+
+<ul>
+<li>acquisition_method: subscription or query</li>
+<li>emission_type: periodical</li>
+<li>dampening_type: none</li>
+</ul>
 <h1 id="rfc.section.7.7.1">
 <a href="#rfc.section.7.7.1">7.7.1.</a> <a href="#firewall-counters" id="firewall-counters">Firewall counters</a>
 </h1>
@@ -1159,37 +1219,37 @@ address {
 <tr>
 <td class="reference"><b id="RFC2119">[RFC2119]</b></td>
 <td class="top">
-<a>Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+<a>Bradner, S.</a>, "<a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC3877">[RFC3877]</b></td>
 <td class="top">
-<a>Chisholm, S.</a> and <a>D. Romascanu</a>, "<a href="http://tools.ietf.org/html/rfc3877">Alarm Management Information Base (MIB)</a>", RFC 3877, DOI 10.17487/RFC3877, September 2004.</td>
+<a>Chisholm, S.</a> and <a>D. Romascanu</a>, "<a href="https://tools.ietf.org/html/rfc3877">Alarm Management Information Base (MIB)</a>", RFC 3877, DOI 10.17487/RFC3877, September 2004.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC4765">[RFC4765]</b></td>
 <td class="top">
-<a>Debar, H.</a>, <a>Curry, D.</a> and <a>B. Feinstein</a>, "<a href="http://tools.ietf.org/html/rfc4765">The Intrusion Detection Message Exchange Format (IDMEF)</a>", RFC 4765, DOI 10.17487/RFC4765, March 2007.</td>
+<a>Debar, H.</a>, <a>Curry, D.</a> and <a>B. Feinstein</a>, "<a href="https://tools.ietf.org/html/rfc4765">The Intrusion Detection Message Exchange Format (IDMEF)</a>", RFC 4765, DOI 10.17487/RFC4765, March 2007.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC4949">[RFC4949]</b></td>
 <td class="top">
-<a>Shirey, R.</a>, "<a href="http://tools.ietf.org/html/rfc4949">Internet Security Glossary, Version 2</a>", FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007.</td>
+<a>Shirey, R.</a>, "<a href="https://tools.ietf.org/html/rfc4949">Internet Security Glossary, Version 2</a>", FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC5424">[RFC5424]</b></td>
 <td class="top">
-<a>Gerhards, R.</a>, "<a href="http://tools.ietf.org/html/rfc5424">The Syslog Protocol</a>", RFC 5424, DOI 10.17487/RFC5424, March 2009.</td>
+<a>Gerhards, R.</a>, "<a href="https://tools.ietf.org/html/rfc5424">The Syslog Protocol</a>", RFC 5424, DOI 10.17487/RFC5424, March 2009.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC6587">[RFC6587]</b></td>
 <td class="top">
-<a>Gerhards, R.</a> and <a>C. Lonvick</a>, "<a href="http://tools.ietf.org/html/rfc6587">Transmission of Syslog Messages over TCP</a>", RFC 6587, DOI 10.17487/RFC6587, April 2012.</td>
+<a>Gerhards, R.</a> and <a>C. Lonvick</a>, "<a href="https://tools.ietf.org/html/rfc6587">Transmission of Syslog Messages over TCP</a>", RFC 6587, DOI 10.17487/RFC6587, April 2012.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7011">[RFC7011]</b></td>
 <td class="top">
-<a>Claise, B.</a>, <a>Trammell, B.</a> and <a>P. Aitken</a>, "<a href="http://tools.ietf.org/html/rfc7011">Specification of the IP Flow Information Export (IPFIX) Protocol for the Exchange of Flow Information</a>", STD 77, RFC 7011, DOI 10.17487/RFC7011, September 2013.</td>
+<a>Claise, B.</a>, <a>Trammell, B.</a> and <a>P. Aitken</a>, "<a href="https://tools.ietf.org/html/rfc7011">Specification of the IP Flow Information Export (IPFIX) Protocol for the Exchange of Flow Information</a>", STD 77, RFC 7011, DOI 10.17487/RFC7011, September 2013.</td>
 </tr>
 </tbody></table>
 <h1 id="rfc.references.2">
@@ -1198,27 +1258,27 @@ address {
 <tr>
 <td class="reference"><b id="I-D.ietf-i2nsf-framework">[I-D.ietf-i2nsf-framework]</b></td>
 <td class="top">
-<a>Lopez, D.</a>, <a>Lopez, E.</a>, <a>Dunbar, L.</a>, <a>Strassner, J.</a> and <a>R. Kumar</a>, "<a href="http://tools.ietf.org/html/draft-ietf-i2nsf-framework-06">Framework for Interface to Network Security Functions</a>", Internet-Draft draft-ietf-i2nsf-framework-06, July 2017.</td>
+<a>Lopez, D.</a>, <a>Lopez, E.</a>, <a>Dunbar, L.</a>, <a>Strassner, J.</a> and <a>R. Kumar</a>, "<a href="https://tools.ietf.org/html/draft-ietf-i2nsf-framework-10">Framework for Interface to Network Security Functions</a>", Internet-Draft draft-ietf-i2nsf-framework-10, November 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-i2nsf-terminology">[I-D.ietf-i2nsf-terminology]</b></td>
 <td class="top">
-<a>Hares, S.</a>, <a>Strassner, J.</a>, <a>Lopez, D.</a>, <a>Xia, L.</a> and <a>H. Birkholz</a>, "<a href="http://tools.ietf.org/html/draft-ietf-i2nsf-terminology-03">Interface to Network Security Functions (I2NSF) Terminology</a>", Internet-Draft draft-ietf-i2nsf-terminology-03, March 2017.</td>
+<a>Hares, S.</a>, <a>Strassner, J.</a>, <a>Lopez, D.</a>, <a>Xia, L.</a> and <a>H. Birkholz</a>, "<a href="https://tools.ietf.org/html/draft-ietf-i2nsf-terminology-05">Interface to Network Security Functions (I2NSF) Terminology</a>", Internet-Draft draft-ietf-i2nsf-terminology-05, January 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.xia-i2nsf-capability-interface-im">[I-D.xia-i2nsf-capability-interface-im]</b></td>
 <td class="top">
-<a>Xia, L.</a>, <a>Strassner, J.</a>, <a>Li, K.</a>, <a>Zhang, D.</a>, <a>Lopez, E.</a>, <a>Bouthors, N.</a> and <a>L. Fang</a>, "<a href="http://tools.ietf.org/html/draft-xia-i2nsf-capability-interface-im-06">Information Model of Interface to Network Security Functions Capability Interface</a>", Internet-Draft draft-xia-i2nsf-capability-interface-im-06, July 2016.</td>
+<a>Xia, L.</a>, <a>Strassner, J.</a>, <a>Li, K.</a>, <a>Zhang, D.</a>, <a>Lopez, E.</a>, <a>Bouthors, N.</a> and <a>L. Fang</a>, "<a href="https://tools.ietf.org/html/draft-xia-i2nsf-capability-interface-im-06">Information Model of Interface to Network Security Functions Capability Interface</a>", Internet-Draft draft-xia-i2nsf-capability-interface-im-06, July 2016.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.xibassnez-i2nsf-capability">[I-D.xibassnez-i2nsf-capability]</b></td>
 <td class="top">
-<a>Xia, L.</a>, <a>Strassner, J.</a>, <a>Basile, C.</a> and <a>D. Lopez</a>, "<a href="http://tools.ietf.org/html/draft-xibassnez-i2nsf-capability-01">Information Model of NSFs Capabilities</a>", Internet-Draft draft-xibassnez-i2nsf-capability-01, March 2017.</td>
+<a>Xia, L.</a>, <a>Strassner, J.</a>, <a>Basile, C.</a> and <a>D. Lopez</a>, "<a href="https://tools.ietf.org/html/draft-xibassnez-i2nsf-capability-02">Information Model of NSFs Capabilities</a>", Internet-Draft draft-xibassnez-i2nsf-capability-02, July 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC3954">[RFC3954]</b></td>
 <td class="top">
-<a>Claise, B.</a>, "<a href="http://tools.ietf.org/html/rfc3954">Cisco Systems NetFlow Services Export Version 9</a>", RFC 3954, DOI 10.17487/RFC3954, October 2004.</td>
+<a>Claise, B.</a>, "<a href="https://tools.ietf.org/html/rfc3954">Cisco Systems NetFlow Services Export Version 9</a>", RFC 3954, DOI 10.17487/RFC3954, October 2004.</td>
 </tr>
 </tbody></table>
 <h1 id="rfc.acknowledgements"><a href="#rfc.acknowledgements">Acknowledgements</a></h1>
@@ -1351,6 +1411,5 @@ address {
   </address>
 </div>
 
-  <div class="github-fork-ribbon-wrapper"><div class="github-fork-ribbon"><a href="https://github.com/henkbirkholz/draft-zhang-i2nsf-info-model-monitoring">Fork me on GitHub</a></div></div>
 </body>
 </html>
